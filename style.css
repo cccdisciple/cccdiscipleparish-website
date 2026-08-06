@@ -256,6 +256,15 @@ ul {
   flex-wrap: wrap;
 }
 
+.hero-official-notice {
+  margin: 28px auto 0;
+  max-width: 520px;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: rgba(250, 246, 236, 0.75);
+  line-height: 1.6;
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-block;
@@ -443,7 +452,52 @@ ul {
   color: var(--gold);
 }
 
+/* ---------- Official Organization Information ---------- */
+.official-info {
+  background: var(--gray-bg);
+  padding: 90px 0;
+  border-top: 1px solid #e6e2d8;
+}
+
+.official-info-grid {
+  max-width: 780px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px 40px;
+}
+
+.official-info-item dt {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 0.88rem;
+  letter-spacing: 0.03em;
+  margin: 0 0 6px;
+}
+
+.official-info-item dd {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
 /* ---------- Footer ---------- */
+.footer-line {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin: 0 0 6px;
+}
+
+.footer-link {
+  color: var(--gold-light);
+  transition: opacity var(--transition);
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  opacity: 0.75;
+}
 .site-footer {
   background: var(--navy-deep);
   color: var(--ivory);
@@ -490,6 +544,10 @@ ul {
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .official-info-grid {
     grid-template-columns: 1fr;
   }
 }
