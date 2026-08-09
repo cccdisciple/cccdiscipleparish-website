@@ -74,11 +74,20 @@ ul {
 
 /* ---------- Navigation ---------- */
 .site-header {
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 50;
+  background: var(--navy-deep);
+  box-shadow: 0 2px 20px rgba(10, 23, 48, 0.18);
+}
+
+/* Homepage keeps the original transparent nav floating over the hero image */
+body.page-home .site-header {
+  position: absolute;
+  background: transparent;
+  box-shadow: none;
 }
 
 .navbar {
@@ -128,7 +137,11 @@ ul {
   gap: 36px;
 }
 
-.nav-menu a {
+.nav-menu > li {
+  position: relative;
+}
+
+.nav-menu > li > a {
   color: var(--white);
   font-size: 0.95rem;
   font-weight: 500;
@@ -137,7 +150,7 @@ ul {
   padding-bottom: 4px;
 }
 
-.nav-menu a::after {
+.nav-menu > li > a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -148,8 +161,8 @@ ul {
   transition: width var(--transition);
 }
 
-.nav-menu a:hover::after,
-.nav-menu a:focus-visible::after {
+.nav-menu > li > a:hover::after,
+.nav-menu > li > a:focus-visible::after {
   width: 100%;
 }
 
@@ -326,6 +339,10 @@ ul {
   padding: 100px 0;
 }
 
+.welcome--alt {
+  background: var(--gray-bg);
+}
+
 .welcome-lead {
   max-width: 680px;
   margin: 0 auto 18px;
@@ -412,6 +429,10 @@ ul {
 .connect {
   background: var(--white);
   padding: 100px 0 110px;
+}
+
+.connect--tight {
+  padding-top: 0;
 }
 
 .connect-list {
@@ -572,14 +593,15 @@ ul {
   }
 
   .nav-menu.is-open {
-    max-height: 260px;
+    max-height: 80vh;
+    overflow-y: auto;
   }
 
   .nav-menu li {
     width: 100%;
   }
 
-  .nav-menu a {
+  .nav-menu > li > a {
     display: block;
     padding: 16px 24px;
     width: 100%;
@@ -611,5 +633,848 @@ ul {
 @media (max-width: 480px) {
   .brand-line--sub {
     display: none;
+  }
+}
+
+/* =========================================================
+   PHASE 2 ADDITIONS
+   Multi-page navigation, homepage expansion sections,
+   sub-page shell, forms, gallery, footer
+   ========================================================= */
+
+/* ---------- Nav dropdowns ---------- */
+.nav-item--dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 4px 0;
+}
+
+.nav-caret {
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--transition);
+}
+
+.nav-item--dropdown:hover .nav-caret,
+.nav-item--dropdown:focus-within .nav-caret,
+.nav-item--dropdown[data-open="true"] .nav-caret {
+  transform: rotate(-135deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  min-width: 230px;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow-soft);
+  padding: 10px;
+  margin-top: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 8px);
+  transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+  z-index: 60;
+}
+
+.nav-item--dropdown:hover .dropdown-menu,
+.nav-item--dropdown:focus-within .dropdown-menu,
+.nav-item--dropdown[data-open="true"] .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 11px 14px;
+  color: var(--navy);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background var(--transition), color var(--transition);
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu a:focus-visible {
+  background: var(--gray-bg);
+  color: var(--navy);
+}
+
+.nav-trigger:focus-visible,
+.dropdown-menu a:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 2px;
+}
+
+/* ---------- Secondary button (for use on light backgrounds) ---------- */
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--navy);
+}
+
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  background: var(--navy);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.btn-outline--on-dark {
+  border-color: rgba(255, 255, 255, 0.7);
+  color: var(--white);
+}
+
+.btn-outline--on-dark:hover,
+.btn-outline--on-dark:focus-visible {
+  background: var(--white);
+  color: var(--navy-deep);
+}
+
+.section-lead--light {
+  color: var(--ivory);
+}
+
+.link-arrow {
+  color: var(--navy);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.link-arrow::after {
+  content: "\2192";
+  transition: transform var(--transition);
+}
+
+.link-arrow:hover::after,
+.link-arrow:focus-visible::after {
+  transform: translateX(4px);
+}
+
+.link-arrow--light {
+  color: var(--gold-light);
+}
+
+/* ---------- Inner-page header (replaces full hero on sub-pages) ---------- */
+.page-header {
+  background: var(--navy);
+  padding: 70px 0 60px;
+  text-align: center;
+}
+
+.page-header-eyebrow {
+  font-family: var(--font-heading);
+  color: var(--gold-light);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin: 0 0 14px;
+}
+
+.page-header-heading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--white);
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+.page-header-lead {
+  color: var(--ivory);
+  max-width: 640px;
+  margin: 18px auto 0;
+  line-height: 1.75;
+  opacity: 0.92;
+}
+
+/* ---------- Generic section lead/body text (reused across pages) ---------- */
+.section-lead {
+  max-width: 680px;
+  margin: 0 auto 18px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.7;
+}
+
+.section-body {
+  max-width: 680px;
+  margin: 0 auto 30px;
+  text-align: center;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.section-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 34px;
+}
+
+/* ---------- Responsive embeds (YouTube / Google Maps) ---------- */
+.embed-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  background: var(--navy-deep);
+}
+
+.embed-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.embed-frame--map {
+  aspect-ratio: 16 / 11;
+}
+
+.embed-caption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 14px;
+}
+
+.embed-caption--light {
+  color: var(--ivory);
+  opacity: 0.75;
+}
+
+/* ---------- Community callout (member events, not church-sponsored) ---------- */
+.community-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--gray-bg);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  box-shadow: var(--shadow-soft);
+  border-top: 3px solid var(--gold);
+}
+
+.community-flyer {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 22px;
+}
+
+.community-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: rgba(200, 162, 74, 0.18);
+  border: 1px solid rgba(200, 162, 74, 0.4);
+  border-radius: 999px;
+  padding: 6px 14px;
+  margin-bottom: 18px;
+}
+
+.community-card h3 {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.3rem;
+  margin: 0 0 8px;
+}
+
+.community-presenter {
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0 0 20px;
+}
+
+.community-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ---------- Upcoming Events placeholder ---------- */
+.events-panel {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--gray-bg);
+  border: 1px dashed rgba(16, 33, 63, 0.28);
+  border-radius: var(--radius);
+  padding: 56px 34px;
+}
+
+.events-panel p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin: 0 0 8px;
+}
+
+.events-panel .events-note {
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+/* ---------- Watch Live section ---------- */
+.watch-live-section {
+  background: var(--navy);
+  padding: 100px 0;
+}
+
+.watch-live-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.watch-live-fallback {
+  text-align: center;
+  margin-top: 26px;
+}
+
+/* ---------- Intro banner (New to Celestial Church of Christ?) ---------- */
+.intro-banner {
+  background: var(--white);
+  padding: 90px 0;
+  text-align: center;
+}
+
+.intro-banner-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ---------- Our Faith preview grid ---------- */
+.faith-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.faith-item {
+  background: var(--gray-bg);
+  border-radius: var(--radius);
+  padding: 32px 22px;
+  text-align: center;
+  border-top: 3px solid var(--gold);
+  height: 100%;
+}
+
+.faith-item h3 {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.02rem;
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+
+.faith-item p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ---------- Recent Messages ---------- */
+.messages-section {
+  background: var(--gray-bg);
+  padding: 100px 0;
+}
+
+.messages-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ---------- Prayer section ---------- */
+.prayer-section {
+  background: var(--navy-deep);
+  padding: 100px 0;
+  text-align: center;
+  color: var(--ivory);
+}
+
+.prayer-section .section-heading {
+  color: var(--white);
+}
+
+.prayer-lead {
+  max-width: 560px;
+  margin: 0 auto 34px;
+  line-height: 1.8;
+  opacity: 0.92;
+}
+
+/* ---------- Give section ---------- */
+.give-section {
+  background: var(--white);
+  padding: 100px 0;
+  text-align: center;
+}
+
+.give-inner {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.give-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+/* ---------- Visit Us ---------- */
+.visit-section {
+  background: var(--gray-bg);
+  padding: 100px 0;
+}
+
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.visit-address {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin: 0 0 26px;
+}
+
+.visit-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Content pages (About / New Here) ---------- */
+.content-section {
+  padding: 90px 0;
+}
+
+.content-section + .content-section {
+  border-top: 1px solid #e6e2d8;
+}
+
+.content-section--alt {
+  background: var(--gray-bg);
+}
+
+.content-list {
+  max-width: 780px;
+  margin: 0 auto;
+  display: grid;
+  gap: 30px;
+}
+
+.content-list-item h3 {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.15rem;
+  margin: 0 0 10px;
+}
+
+.scripture-ref {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 0.8em;
+  color: var(--text-muted);
+}
+
+.content-list-item p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.content-note {
+  max-width: 780px;
+  margin: 30px auto 0;
+  padding: 18px 22px;
+  background: rgba(200, 162, 74, 0.1);
+  border: 1px solid rgba(200, 162, 74, 0.3);
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ---------- Forms (Prayer Request) ---------- */
+.form-card {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--gray-bg);
+  border-radius: var(--radius);
+  padding: 46px 40px;
+  box-shadow: var(--shadow-soft);
+}
+
+.form-field {
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+}
+
+.form-field input,
+.form-field textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 12px 14px;
+  border: 1px solid #d8d3c6;
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--text-dark);
+  transition: border-color var(--transition);
+}
+
+.form-field input:focus-visible,
+.form-field textarea:focus-visible {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 26px;
+}
+
+.form-checkbox input {
+  margin-top: 3px;
+}
+
+.form-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.form-status {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: #eaf3ea;
+  color: #2b5c34;
+  font-size: 0.9rem;
+  display: none;
+}
+
+.form-status.is-visible {
+  display: block;
+}
+
+.form-status.is-error {
+  background: #fbeaea;
+  color: #7a2222;
+}
+
+/* ---------- Gallery ---------- */
+.gallery-category {
+  margin-bottom: 60px;
+}
+
+.gallery-category:last-child {
+  margin-bottom: 0;
+}
+
+.gallery-category h3 {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.2rem;
+  margin: 0 0 18px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.gallery-placeholder {
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--gray-bg), #ece7da);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 14px;
+  border: 1px dashed rgba(16, 33, 63, 0.2);
+}
+
+/* ---------- Footer (multi-page) ---------- */
+.site-footer {
+  background: var(--navy-deep);
+  color: var(--ivory);
+  padding: 64px 24px 34px;
+  text-align: left;
+}
+
+.footer-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-col h4 {
+  font-family: var(--font-heading);
+  color: var(--gold-light);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col a,
+.footer-col p {
+  font-size: 0.88rem;
+  opacity: 0.85;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.footer-col a {
+  transition: opacity var(--transition), color var(--transition);
+}
+
+.footer-col a:hover,
+.footer-col a:focus-visible {
+  opacity: 1;
+  color: var(--gold-light);
+}
+
+.footer-bottom {
+  max-width: var(--max-width);
+  margin: 30px auto 0;
+  text-align: center;
+}
+
+.footer-name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  margin: 0 0 10px;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  opacity: 0.65;
+  margin: 4px 0 0;
+}
+
+/* ---------- Organization Information (compact disclosure) ---------- */
+.org-info {
+  margin: 26px auto 0;
+  max-width: 640px;
+  text-align: left;
+}
+
+.org-info summary {
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--gold-light);
+  list-style: none;
+}
+
+.org-info summary::-webkit-details-marker {
+  display: none;
+}
+
+.org-info summary::after {
+  content: "\2193  Show organization details";
+  margin-left: 6px;
+  font-family: var(--font-body);
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.8;
+}
+
+.org-info[open] summary::after {
+  content: "\2191  Hide organization details";
+}
+
+.org-info summary:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+.org-info-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 30px;
+  font-size: 0.78rem;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+}
+
+.org-info-grid dt {
+  color: var(--gold-light);
+  margin: 0 0 3px;
+  letter-spacing: 0.03em;
+}
+
+.org-info-grid dd {
+  margin: 0;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+/* ---------- Phase 2 responsive rules ---------- */
+@media (max-width: 900px) {
+  .faith-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .visit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .dropdown-menu {
+    position: static;
+    min-width: 0;
+    margin-top: 0;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition);
+  }
+
+  .nav-item--dropdown[data-open="true"] .dropdown-menu {
+    max-height: 320px;
+    overflow-y: auto;
+    transform: none;
+  }
+
+  .dropdown-menu a {
+    color: var(--ivory);
+    padding: 14px 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0;
+  }
+
+  .dropdown-menu a:hover,
+  .dropdown-menu a:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--gold-light);
+  }
+
+  .nav-trigger {
+    width: 100%;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-item--dropdown {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-header {
+    padding: 50px 0 44px;
+  }
+
+  .form-card {
+    padding: 34px 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .faith-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-col ul {
+    align-items: center;
+  }
+
+  .org-info-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .visit-actions {
+    justify-content: center;
   }
 }

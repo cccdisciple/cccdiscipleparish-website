@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prayer Request | Celestial Church of Christ Disciple Parish</title>
+  <meta name="description" content="Submit a prayer request to Celestial Church of Christ Disciple Parish. Whatever you're facing, we'd be honored to stand with you in prayer.">
+  <link rel="canonical" href="https://cccdiscipleparish.org/connect/prayer.html">
+
+  <meta property="og:title" content="Prayer Request | Celestial Church of Christ Disciple Parish">
+  <meta property="og:description" content="Whatever you're facing, we'd be honored to stand with you in prayer.">
+  <meta property="og:url" content="https://cccdiscipleparish.org/connect/prayer.html">
+  <meta property="og:image" content="https://cccdiscipleparish.org/images/hero-optimized.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="../images/logo.png" type="image/png">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <header class="site-header">
+    <nav class="navbar" aria-label="Primary">
+      <a href="../index.html" class="brand">
+        <img src="../images/logo.png" alt="Celestial Church of Christ crest" class="brand-logo">
+        <span class="brand-text">
+          <span class="brand-line brand-line--main">Celestial Church of Christ</span>
+          <span class="brand-line brand-line--sub">Disciple Parish</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryMenu" aria-label="Open menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <ul class="nav-menu" id="primaryMenu">
+        <li class="nav-item nav-item--dropdown">
+          <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            About <span class="nav-caret" aria-hidden="true"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="../about/faith.html">Our Faith</a></li>
+            <li><a href="../about/celestial-church.html">Celestial Church of Christ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item nav-item--dropdown">
+          <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            Services &amp; Events <span class="nav-caret" aria-hidden="true"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="../services/index.html#weekly-services">Weekly Services</a></li>
+            <li><a href="../services/index.html#upcoming-events">Upcoming Events</a></li>
+            <li><a href="../services/calendar.html">Calendar</a></li>
+          </ul>
+        </li>
+        <li><a href="../watch-live/index.html">Watch Live</a></li>
+        <li><a href="../new-here/index.html">New Here</a></li>
+        <li><a href="../give/index.html">Give</a></li>
+        <li class="nav-item nav-item--dropdown">
+          <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            Connect <span class="nav-caret" aria-hidden="true"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="../connect/index.html">Contact Us</a></li>
+            <li><a href="../connect/prayer.html">Prayer Request</a></li>
+            <li><a href="../connect/gallery.html">Gallery</a></li>
+            <li><a href="../connect/index.html#social">Social Media</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===================== PAGE HEADER ===================== -->
+  <section class="page-header">
+    <div class="container">
+      <p class="page-header-eyebrow">Connect</p>
+      <h1 class="page-header-heading">Prayer Request</h1>
+      <p class="page-header-lead">Whatever you're facing, we'd be honored to stand with you in prayer.</p>
+    </div>
+  </section>
+
+  <!-- ===================== PRAYER FORM ===================== -->
+  <section class="welcome">
+    <div class="container">
+      <form class="form-card" id="prayerForm" novalidate>
+        <!-- FUTURE: This form does not yet submit anywhere. The church has
+             not yet set up a church email account or a secure form-handling
+             service. Once one exists, connect the form here (e.g. an
+             "action" attribute pointing at a form service, or a small
+             server-side handler) instead of the local confirmation message
+             in script.js. Do not hard-code an invented email address. -->
+        <div class="form-field">
+          <label for="prayerName">Name</label>
+          <input type="text" id="prayerName" name="name" required autocomplete="name">
+        </div>
+
+        <div class="form-field">
+          <label for="prayerEmail">Email (optional)</label>
+          <input type="email" id="prayerEmail" name="email" autocomplete="email">
+        </div>
+
+        <div class="form-field">
+          <label for="prayerRequest">Prayer Request</label>
+          <textarea id="prayerRequest" name="request" rows="6" required></textarea>
+        </div>
+
+        <label class="form-checkbox">
+          <input type="checkbox" id="prayerContact" name="contact">
+          I'd like someone from the church to contact me.
+        </label>
+
+        <button type="submit" class="btn btn-primary">Submit Prayer Request</button>
+
+        <p class="form-status" id="prayerFormStatus" role="status"></p>
+
+        <p class="form-note">Prayer requests submitted here are kept private and are not published anywhere on this website.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Celestial Church of Christ Disciple Parish</h4>
+        <p>175 Affleck Street<br>Hartford, CT 06106</p>
+        <p><a href="tel:+18602410855">(860) 241-0855</a></p>
+        <p><a href="mailto:cccdisciple@gmail.com">cccdisciple@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="../about/faith.html">Our Faith</a></li>
+          <li><a href="../about/celestial-church.html">Celestial Church of Christ</a></li>
+          <li><a href="../services/index.html">Services &amp; Events</a></li>
+          <li><a href="../new-here/index.html">New Here</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="../watch-live/index.html">Watch Live</a></li>
+          <li><a href="../connect/prayer.html">Prayer Request</a></li>
+          <li><a href="../connect/gallery.html">Gallery</a></li>
+          <li><a href="../connect/index.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Give &amp; Follow</h4>
+        <ul>
+          <li><a href="../give/index.html">Give Online</a></li>
+          <li><a href="https://www.youtube.com/@CCCDiscipleParish" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.facebook.com/discipleparishccc" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.instagram.com/discipleparishcelestial?igsh=ZjRxamp5ejhwb2Fk&utm_source=qr" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://x.com/cccdisciple?s=11" target="_blank" rel="noopener">X / Twitter</a></li>
+          <li><a href="https://www.tiktok.com/@cccdisciple?_t=ZT-8v5ptqhTwVy&_r=1" target="_blank" rel="noopener">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <details class="org-info">
+        <summary>Organization Information</summary>
+        <dl class="org-info-grid">
+          <div>
+            <dt>Legal Name</dt>
+            <dd>Celestial Church of Christ &ndash; Disciple Parish, Inc.</dd>
+          </div>
+          <div>
+            <dt>Official Website</dt>
+            <dd>cccdiscipleparish.org</dd>
+          </div>
+          <div>
+            <dt>Federal Tax ID (EIN)</dt>
+            <dd>26-4718363</dd>
+          </div>
+          <div>
+            <dt>IRS Tax Status</dt>
+            <dd>Recognized under Section 501(c)(3) of the Internal Revenue Code.</dd>
+          </div>
+          <div>
+            <dt>Public Charity Classification</dt>
+            <dd>170(b)(1)(A)(i)</dd>
+          </div>
+        </dl>
+      </details>
+
+      <p class="footer-copy">&copy; <span id="year"></span> Celestial Church of Christ Disciple Parish, Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
