@@ -1478,3 +1478,21 @@ body.page-home .site-header {
     justify-content: center;
   }
 }
+
+/* Seven top-level nav items need a bit less breathing room than six did
+   on narrower desktop/tablet widths; large screens are unaffected. */
+@media (min-width: 761px) and (max-width: 1280px) {
+  .nav-menu {
+    gap: 10px;
+  }
+
+  .nav-menu > li > a,
+  .nav-trigger {
+    font-size: 0.78rem;
+    letter-spacing: 0;
+  }
+
+  .nav-trigger {
+    gap: 4px;
+  }
+}
