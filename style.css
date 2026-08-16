@@ -425,6 +425,13 @@ body.page-home .site-header {
   opacity: 0.85;
 }
 
+.service-description {
+  color: var(--ivory);
+  opacity: 0.85;
+  line-height: 1.7;
+  margin: 14px 0 0;
+}
+
 /* ---------- Connect ---------- */
 .connect {
   background: var(--white);
