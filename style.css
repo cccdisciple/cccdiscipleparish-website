@@ -1125,7 +1125,11 @@ body.page-home .site-header {
 .content-list-item p {
   color: var(--text-muted);
   line-height: 1.8;
-  margin: 0;
+  margin: 0 0 14px;
+}
+
+.content-list-item p:last-child {
+  margin-bottom: 0;
 }
 
 .content-note {
