@@ -1524,3 +1524,103 @@ body.page-home .site-header {
     gap: 4px;
   }
 }
+
+/* ---------- Secondary resource navigation (About/Worship information hub) ---------- */
+.resource-nav {
+  background: var(--gray-bg);
+  border-bottom: 1px solid #e6e2d8;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.resource-nav-list {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 14px 0;
+  white-space: nowrap;
+}
+
+.resource-nav-list a {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  transition: background var(--transition), color var(--transition);
+}
+
+.resource-nav-list a:hover {
+  background: rgba(200, 162, 74, 0.12);
+  color: var(--navy);
+}
+
+.resource-nav-list a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.resource-nav-list a[aria-current="page"] {
+  background: var(--navy);
+  color: var(--gold-light);
+}
+
+/* ---------- Ranks reference layout (Leadership & Ranks) ---------- */
+.rank-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.rank-column-heading {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.15rem;
+  text-align: center;
+  margin: 0 0 18px;
+}
+
+.rank-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: rank;
+}
+
+.rank-list li {
+  counter-increment: rank;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid #e6e2d8;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+
+.rank-list li:last-child {
+  border-bottom: none;
+}
+
+.rank-list li::before {
+  content: counter(rank) ".";
+  font-family: var(--font-heading);
+  color: var(--gold);
+  font-weight: 600;
+  min-width: 24px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .rank-columns {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
