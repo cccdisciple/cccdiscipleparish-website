@@ -1662,3 +1662,184 @@ body.page-home .site-header {
     gap: 40px;
   }
 }
+
+/* ---------- About Disciple Parish (storytelling page, scoped) ---------- */
+.story-copy {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.story-text {
+  color: var(--text-dark);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin: 0 0 22px;
+}
+
+.story-text:last-child {
+  margin-bottom: 0;
+}
+
+.story-text--short {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.story-text--light {
+  color: var(--ivory);
+  opacity: 0.92;
+}
+
+.story-standalone {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--navy);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  text-align: center;
+  line-height: 1.5;
+  margin: 42px auto;
+  max-width: 560px;
+  padding-top: 26px;
+  position: relative;
+}
+
+.story-standalone::before {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 auto 22px;
+}
+
+.story-standalone--name {
+  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+  color: var(--gold);
+}
+
+.story-standalone--light {
+  color: var(--gold-light);
+}
+
+.story-standalone--light::before {
+  background: var(--gold-light);
+}
+
+/* ---- Timeline ---- */
+.story-timeline {
+  list-style: none;
+  margin: 50px auto 0;
+  padding: 0;
+  display: flex;
+  position: relative;
+  max-width: 900px;
+}
+
+.story-timeline::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 16.6%;
+  right: 16.6%;
+  height: 2px;
+  background: rgba(200, 162, 74, 0.4);
+}
+
+.story-timeline-item {
+  flex: 1;
+  position: relative;
+  text-align: center;
+  padding: 30px 16px 0;
+}
+
+.story-timeline-dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--gold);
+  z-index: 2;
+}
+
+.story-timeline-date {
+  font-family: var(--font-heading);
+  color: var(--gold);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.story-timeline-title {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.1rem;
+  margin: 0 0 10px;
+}
+
+.story-timeline-desc {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 220px;
+}
+
+@media (max-width: 760px) {
+  .story-timeline {
+    flex-direction: column;
+    max-width: 480px;
+  }
+
+  .story-timeline::before {
+    top: 0;
+    bottom: 0;
+    left: 8px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+
+  .story-timeline-item {
+    text-align: left;
+    padding: 0 0 36px 34px;
+  }
+
+  .story-timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .story-timeline-dot {
+    top: 4px;
+    left: 0;
+    transform: none;
+  }
+
+  .story-timeline-desc {
+    max-width: none;
+    margin-left: 0;
+  }
+}
+
+/* ---- Conclusion ---- */
+.story-conclusion {
+  background: var(--navy);
+  padding: 100px 0 110px;
+}
+
+.story-final {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--gold-light);
+  text-align: center;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 56px auto 0;
+  padding-top: 40px;
+  border-top: 1px solid rgba(227, 199, 128, 0.3);
+}
