@@ -26,8 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!isOpen) closeAllDropdowns();
     });
 
-    /* Close menu after selecting a link (mobile) */
-    navMenu.querySelectorAll("a").forEach(function (link) {
+    /* Close menu after selecting a link (mobile). Dropdown triggers (e.g.
+       "Celestial Worship", which is a real link as well as a toggle) are
+       excluded here so a first tap can open the submenu instead of
+       immediately closing the whole mobile menu. */
+    navMenu.querySelectorAll("a:not(.nav-trigger)").forEach(function (link) {
       link.addEventListener("click", function () {
         navMenu.classList.remove("is-open");
         navToggle.setAttribute("aria-expanded", "false");
@@ -37,14 +40,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* ---- Nav dropdowns (About / Services & Events / Connect) ---- */
+  /* ---- Nav dropdowns (About / Celestial Worship / Services & Events / Connect) ---- */
   var dropdownItems = document.querySelectorAll(".nav-item--dropdown");
 
   dropdownItems.forEach(function (item) {
     var trigger = item.querySelector(".nav-trigger");
     if (!trigger) return;
 
-    trigger.addEventListener("click", function () {
+    trigger.addEventListener("click", function (event) {
+      /* Some triggers (e.g. "Celestial Worship") are real links to their
+         section's hub page rather than plain toggle buttons. On desktop,
+         hover already reveals the submenu, so a click should simply follow
+         the link. On mobile there is no hover, so the first tap must open
+         the submenu instead of navigating away immediately; the "Overview"
+         item inside the submenu then reaches the same hub page. */
+      var isMobileNav = navToggle && window.getComputedStyle(navToggle).display !== "none";
+      if (trigger.tagName === "A" && isMobileNav) {
+        event.preventDefault();
+      } else if (trigger.tagName === "A") {
+        return; /* desktop: let the link navigate normally */
+      }
+
       var isOpen = item.getAttribute("data-open") === "true";
 
       /* Close any other open dropdown before opening this one */

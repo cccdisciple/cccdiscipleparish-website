@@ -141,7 +141,7 @@ body.page-home .site-header {
   position: relative;
 }
 
-.nav-menu > li > a {
+.nav-menu > li > a:not(.nav-trigger) {
   color: var(--white);
   font-size: 0.95rem;
   font-weight: 500;
@@ -150,7 +150,7 @@ body.page-home .site-header {
   padding-bottom: 4px;
 }
 
-.nav-menu > li > a::after {
+.nav-menu > li > a:not(.nav-trigger)::after {
   content: "";
   position: absolute;
   left: 0;
@@ -161,8 +161,8 @@ body.page-home .site-header {
   transition: width var(--transition);
 }
 
-.nav-menu > li > a:hover::after,
-.nav-menu > li > a:focus-visible::after {
+.nav-menu > li > a:not(.nav-trigger):hover::after,
+.nav-menu > li > a:not(.nav-trigger):focus-visible::after {
   width: 100%;
 }
 
@@ -608,7 +608,7 @@ body.page-home .site-header {
     width: 100%;
   }
 
-  .nav-menu > li > a {
+  .nav-menu > li > a:not(.nav-trigger) {
     display: block;
     padding: 16px 24px;
     width: 100%;
