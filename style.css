@@ -1624,42 +1624,166 @@ body.page-home .site-header {
   margin: 0 0 18px;
 }
 
-.rank-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  counter-reset: rank;
-}
-
-.rank-list li {
-  counter-increment: rank;
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  padding: 9px 0;
-  border-bottom: 1px solid #e6e2d8;
-  color: var(--text-dark);
-  line-height: 1.4;
-}
-
-.rank-list li:last-child {
-  border-bottom: none;
-}
-
-.rank-list li::before {
-  content: counter(rank) ".";
-  font-family: var(--font-heading);
-  color: var(--gold);
-  font-weight: 600;
-  min-width: 24px;
-  text-align: right;
-  flex-shrink: 0;
+.rank-column-heading--prophetic {
+  color: #3a5f80;
 }
 
 @media (max-width: 900px) {
   .rank-columns {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+}
+
+/* ---- Rank chains (reuses .flow-step / .flow-arrow) ---- */
+.flow-step--prophetic {
+  border-color: rgba(58, 95, 128, 0.35);
+  background: rgba(58, 95, 128, 0.07);
+}
+
+.flow-step.evangelist-level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.evangelist-level-divider {
+  width: 36px;
+  height: 1px;
+  background: rgba(200, 162, 74, 0.4);
+  margin: 2px auto;
+}
+
+/* ---- Rank convergence marker ---- */
+.rank-convergence {
+  max-width: 640px;
+  margin: 40px auto 0;
+  text-align: center;
+  padding: 24px 28px;
+  border: 1px dashed rgba(200, 162, 74, 0.5);
+  border-radius: var(--radius);
+  background: rgba(200, 162, 74, 0.06);
+}
+
+.rank-convergence-arrows {
+  display: block;
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+  letter-spacing: 0.3em;
+}
+
+.rank-convergence-label {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 0.95rem;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.rank-convergence-note {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ---- Clergy / non-clergy comparison ---- */
+.clergy-level {
+  max-width: 640px;
+  margin: 0 auto 22px;
+  background: var(--gray-bg);
+  border-top: 3px solid var(--navy);
+  border-radius: var(--radius);
+  padding: 28px 30px;
+}
+
+.clergy-level:last-of-type {
+  margin-bottom: 0;
+}
+
+.clergy-level-heading {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 20px;
+}
+
+.clergy-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.clergy-col {
+  text-align: center;
+}
+
+.clergy-col:first-child {
+  border-right: 1px solid #e6e2d8;
+}
+
+.clergy-col-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 8px;
+}
+
+.clergy-col-title {
+  display: block;
+  color: var(--navy);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.clergy-col-abbr {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 4px;
+}
+
+@media (max-width: 560px) {
+  .clergy-split {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .clergy-col:first-child {
+    border-right: none;
+    border-bottom: 1px solid #e6e2d8;
+    padding-bottom: 16px;
+  }
+}
+
+/* ---- Five-up explanatory grid (reuses .faith-item) ---- */
+.faith-grid--five {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 1000px) {
+  .faith-grid--five {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .faith-grid--five {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .faith-grid--five {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1842,4 +1966,228 @@ body.page-home .site-header {
   margin: 56px auto 0;
   padding-top: 40px;
   border-top: 1px solid rgba(227, 199, 128, 0.3);
+}
+
+/* ---------- Holy Mary's Day: intercession flow ---------- */
+.flow-steps {
+  max-width: 420px;
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flow-step {
+  width: 100%;
+  background: var(--gray-bg);
+  border: 1px solid rgba(200, 162, 74, 0.35);
+  border-radius: var(--radius);
+  padding: 18px 24px;
+  text-align: center;
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1rem;
+}
+
+.flow-arrow {
+  color: var(--gold);
+  font-size: 1.4rem;
+  line-height: 1;
+  margin: 10px 0;
+}
+
+/* ---------- Bible Lessons ---------- */
+.lessons-month-nav {
+  background: var(--gray-bg);
+  border-bottom: 1px solid #e6e2d8;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.lessons-month-list {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 14px 0;
+  scrollbar-width: thin;
+}
+
+.lessons-month-btn {
+  flex: 0 0 auto;
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  white-space: nowrap;
+}
+
+.lessons-month-btn:hover {
+  background: rgba(200, 162, 74, 0.12);
+  color: var(--navy);
+}
+
+.lessons-month-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.lessons-month-btn[aria-selected="true"] {
+  background: var(--navy);
+  color: var(--gold-light);
+  border-color: var(--navy);
+}
+
+.lessons-month-heading {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  text-align: center;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  margin: 0 0 40px;
+}
+
+.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.lesson-card {
+  background: var(--white);
+  border: 1px solid #e6e2d8;
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 26px 24px;
+  position: relative;
+}
+
+.lesson-card--upcoming {
+  border-top-color: var(--navy);
+}
+
+.lesson-card-badge {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: var(--gold-light);
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lesson-card-date {
+  font-family: var(--font-heading);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.lesson-card-service {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.15rem;
+  margin: 0 0 4px;
+}
+
+.lesson-card-time {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin: 0 0 6px;
+}
+
+.lesson-card-designation {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(200, 162, 74, 0.14);
+  border: 1px solid rgba(200, 162, 74, 0.4);
+  color: var(--navy);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.lesson-card-readings {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #e6e2d8;
+  display: grid;
+  gap: 12px;
+}
+
+.lesson-label {
+  display: block;
+  font-family: var(--font-heading);
+  color: var(--gold);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+}
+
+.lesson-ref {
+  display: block;
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+}
+
+.lesson-ref--empty {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.lessons-source {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.lessons-source-label {
+  font-family: var(--font-heading);
+  color: var(--gold);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.lessons-source-name {
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0 0 26px;
+}
+
+@media (max-width: 900px) {
+  .lessons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .lessons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lessons-month-nav {
+    position: static;
+  }
 }
