@@ -580,7 +580,11 @@ body.page-home .site-header {
   }
 }
 
-@media (max-width: 760px) {
+/* Nav collapses to the hamburger menu at 1200px rather than the
+   typical 760px tablet breakpoint: with 9 top-level items, the
+   navbar's own 1180px max-width leaves no room for a horizontal
+   menu below ~1200px without wrapping or clipping items. */
+@media (max-width: 1200px) {
   .nav-toggle {
     display: flex;
   }
@@ -614,7 +618,9 @@ body.page-home .site-header {
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
+}
 
+@media (max-width: 760px) {
   .hero-content {
     padding: 130px 20px 70px;
   }
@@ -1464,7 +1470,7 @@ body.page-home .site-header {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1200px) {
   .dropdown-menu {
     position: static;
     min-width: 0;
@@ -1511,7 +1517,9 @@ body.page-home .site-header {
     flex-direction: column;
     align-items: stretch;
   }
+}
 
+@media (max-width: 760px) {
   .page-header {
     padding: 50px 0 44px;
   }
@@ -1545,9 +1553,10 @@ body.page-home .site-header {
   }
 }
 
-/* Seven top-level nav items need a bit less breathing room than six did
-   on narrower desktop/tablet widths; large screens are unaffected. */
-@media (min-width: 761px) and (max-width: 1280px) {
+/* Nine top-level nav items need a bit less breathing room in the narrow
+   band just above the 1200px hamburger breakpoint; large screens are
+   unaffected, and narrower widths use the hamburger menu instead. */
+@media (min-width: 1201px) and (max-width: 1280px) {
   .nav-menu {
     gap: 10px;
   }
