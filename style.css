@@ -3771,7 +3771,8 @@ details[open] > .rank-node-summary .rank-node-caret {
 }
 
 .practice-detail-body p:not(.practice-detail-label):not(.practice-scripture-refs):not(.practice-reflection),
-.practice-detail-panel-body p:not(.practice-detail-label):not(.practice-scripture-refs):not(.practice-reflection) {
+.practice-detail-panel-body p:not(.practice-detail-label):not(.practice-scripture-refs):not(.practice-reflection),
+.explorer-panel-body p:not(.practice-detail-label):not(.practice-scripture-refs):not(.practice-reflection) {
   color: var(--text-muted);
   font-size: 0.92rem;
   line-height: 1.75;
@@ -3779,7 +3780,8 @@ details[open] > .rank-node-summary .rank-node-caret {
 }
 
 .practice-detail-body p:last-child,
-.practice-detail-panel-body p:last-child {
+.practice-detail-panel-body p:last-child,
+.explorer-panel-body p:last-child {
   margin-bottom: 0;
 }
 
@@ -4303,4 +4305,296 @@ details[open] > .rank-node-summary .rank-node-caret {
   gap: 28px;
   flex-wrap: wrap;
   margin-top: 40px;
+}
+
+/* =========================================================
+   Life as a Celestian — Unified Practice Explorer
+   Built by practice-explorer.js from the existing .practice-group
+   markup. On desktop: persistent sticky navigator (left) + one
+   dynamic reading panel (right). On mobile/tablet: a sticky
+   compact selector that opens the same navigator as a panel.
+
+   .explorer-legacy-hide-* below is only applied once JS has
+   successfully built the new explorer (body.js-explorer-ready) —
+   without JS, the original per-category tile grids stay exactly
+   as they always were.
+   ========================================================= */
+
+.explorer-section .section-lead {
+  margin-bottom: 8px;
+}
+
+/* ---- Legacy per-category sections: hide what the new explorer
+   now covers, keep whatever it doesn't (supplementary notes). ---- */
+body.js-explorer-ready .explorer-legacy-hide-shell .practice-group-intro,
+body.js-explorer-ready .explorer-legacy-hide-shell .practice-shell {
+  display: none;
+}
+
+body.js-explorer-ready .explorer-legacy-hide-all {
+  display: none;
+}
+
+/* ---- Mobile/tablet sticky selector bar (hidden on desktop) ---- */
+.explorer-mobile-bar {
+  display: none;
+}
+
+.explorer-mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--white);
+  border: 1px solid #e6e2d8;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+  cursor: pointer;
+}
+
+.explorer-mobile-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.explorer-mobile-category {
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.66rem;
+}
+
+.explorer-mobile-topic {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.98rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.explorer-mobile-chevron {
+  flex: 0 0 auto;
+  color: var(--gold-deep);
+  transition: transform var(--transition);
+}
+
+.explorer-mobile-toggle[aria-expanded="true"] .explorer-mobile-chevron {
+  transform: rotate(180deg);
+}
+
+.explorer-mobile-toggle:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 2px;
+}
+
+/* ---- Shell layout ---- */
+.explorer-shell {
+  max-width: 1080px;
+  margin: 40px auto 0;
+}
+
+/* ---- Navigator: editorial table of contents, not tabs/pills/cards ---- */
+.explorer-nav {
+  margin: 0 0 28px;
+}
+
+.explorer-category + .explorer-category {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid #e6e2d8;
+}
+
+.explorer-category-name {
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  margin: 0 0 10px;
+}
+
+.explorer-topic-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.explorer-topic-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-left: 3px solid transparent;
+  padding: 9px 0 9px 14px;
+  font-family: var(--font-heading);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.explorer-topic-link:hover {
+  color: var(--navy);
+  background: rgba(200, 162, 74, 0.06);
+}
+
+.explorer-topic-link:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 2px;
+}
+
+.explorer-topic-link.is-active {
+  color: var(--navy);
+  font-weight: 700;
+  border-left-color: var(--gold);
+  background: rgba(200, 162, 74, 0.1);
+}
+
+/* ---- Reading panel ---- */
+.explorer-panel {
+  min-width: 0;
+}
+
+.explorer-panel-category {
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  margin: 0 0 10px;
+}
+
+.explorer-panel-title {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.35rem;
+  line-height: 1.3;
+  margin: 0 0 22px;
+}
+
+.explorer-panel-title:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 4px;
+}
+
+.explorer-panel-body {
+  max-width: 640px;
+}
+
+.explorer-panel-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #e6e2d8;
+  max-width: 640px;
+}
+
+.explorer-panel-prev,
+.explorer-panel-next {
+  background: none;
+  border: none;
+  padding: 8px 0;
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+}
+
+.explorer-panel-next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.explorer-panel-prev:hover,
+.explorer-panel-next:hover {
+  color: var(--gold-deep);
+}
+
+.explorer-panel-prev:focus-visible,
+.explorer-panel-next:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 2px;
+}
+
+/* ---- Desktop: sticky sidebar + panel side by side ---- */
+@media (min-width: 1024px) {
+  .explorer-shell {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .explorer-nav {
+    position: sticky;
+    top: var(--explorer-sticky-offset, 100px);
+    max-height: calc(100vh - var(--explorer-sticky-offset, 100px) - 32px);
+    overflow-y: auto;
+    margin: 0;
+    padding-right: 4px;
+  }
+}
+
+/* ---- Below desktop: sticky compact selector + popover navigator.
+   .explorer-shell is the positioning context (position: relative)
+   so the absolutely-positioned nav anchors right at the shell's own
+   top edge — which, in normal flow, sits immediately below the
+   sticky mobile bar (the bar is a separate, preceding sibling, not
+   an ancestor, so the nav cannot anchor to the bar directly). When
+   the nav is closed it is taken out of flow entirely, so the panel
+   underneath renders at that same top edge as if the nav were not
+   there; when open, the nav floats over the panel as a dropdown. ---- */
+@media (max-width: 1023px) {
+  .explorer-mobile-bar {
+    display: block;
+    position: sticky;
+    top: var(--explorer-sticky-offset, 70px);
+    z-index: 20;
+    margin-bottom: 24px;
+  }
+
+  .explorer-shell {
+    position: relative;
+  }
+
+  .explorer-nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 15;
+    margin: 0;
+    padding: 18px 20px;
+    background: var(--white);
+    border: 1px solid #e6e2d8;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .explorer-nav.is-open {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explorer-mobile-chevron {
+    transition: none;
+  }
 }
