@@ -4598,3 +4598,304 @@ body.js-explorer-ready .explorer-legacy-hide-all {
     transition: none;
   }
 }
+
+/* =========================================================
+   About Celestial Church of Christ — 1947 origin story
+   The strongest visual feature of the page: an alternating
+   vertical timeline (desktop) that collapses to a single
+   left-aligned column (mobile), with the September 29 Divine
+   Order entry breaking out as a full-width emphasis panel.
+   ========================================================= */
+
+.origin-timeline {
+  position: relative;
+  max-width: 980px;
+  margin: 48px auto 0;
+}
+
+.origin-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(200, 162, 74, 0.35);
+  transform: translateX(-50%);
+}
+
+.origin-timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 0 48px 56px;
+}
+
+.origin-timeline-item:nth-child(odd) {
+  margin-left: 0;
+  text-align: right;
+}
+
+.origin-timeline-item:nth-child(even) {
+  margin-left: 50%;
+  text-align: left;
+}
+
+.origin-timeline-marker {
+  position: absolute;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--gold);
+  z-index: 2;
+}
+
+.origin-timeline-item:nth-child(odd) .origin-timeline-marker {
+  right: -8px;
+}
+
+.origin-timeline-item:nth-child(even) .origin-timeline-marker {
+  left: -8px;
+}
+
+.origin-timeline-date {
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  margin: 0 0 6px;
+}
+
+.origin-timeline-title {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.2rem;
+  margin: 0 0 12px;
+}
+
+.origin-timeline-content p {
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin: 0 0 12px;
+  font-size: 0.94rem;
+}
+
+.origin-timeline-content p:last-child {
+  margin-bottom: 0;
+}
+
+.origin-timeline-word {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+}
+
+.origin-timeline-quote {
+  margin: 0 0 12px;
+  padding: 10px 16px;
+  border-left: 3px solid var(--gold);
+  background: rgba(200, 162, 74, 0.06);
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--navy);
+}
+
+.origin-timeline-item:nth-child(odd) .origin-timeline-quote {
+  border-left: none;
+  border-right: 3px solid var(--gold);
+}
+
+/* Emphasis item (the Divine Order): full-width, breaks the
+   alternating rail, dark panel to mark it as the page's central
+   moment. */
+.origin-timeline-item--emphasis {
+  width: 100%;
+  margin-left: 0;
+  text-align: center;
+  padding: 0 0 56px;
+}
+
+.origin-timeline-item--emphasis .origin-timeline-marker {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 22px;
+  background: var(--gold);
+  border-color: var(--navy);
+}
+
+.origin-timeline-item--emphasis .origin-timeline-content {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--navy);
+  border-radius: var(--radius);
+  padding: 44px 40px;
+}
+
+.origin-timeline-item--emphasis .origin-timeline-date {
+  color: var(--gold-light);
+}
+
+.origin-timeline-item--emphasis .origin-timeline-title {
+  color: var(--white);
+  font-size: 1.5rem;
+}
+
+.origin-timeline-item--emphasis .origin-timeline-content p {
+  color: var(--ivory);
+  opacity: 0.92;
+}
+
+.origin-timeline-callout {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--white);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 860px) {
+  .origin-timeline::before {
+    left: 20px;
+  }
+
+  .origin-timeline-item,
+  .origin-timeline-item:nth-child(odd),
+  .origin-timeline-item:nth-child(even) {
+    width: 100%;
+    margin-left: 0;
+    text-align: left;
+    padding: 0 0 44px 52px;
+  }
+
+  .origin-timeline-item:nth-child(odd) .origin-timeline-marker,
+  .origin-timeline-item:nth-child(even) .origin-timeline-marker {
+    left: 12px;
+    right: auto;
+  }
+
+  .origin-timeline-item:nth-child(odd) .origin-timeline-quote {
+    border-right: none;
+    border-left: 3px solid var(--gold);
+  }
+
+  .origin-timeline-item--emphasis .origin-timeline-content {
+    padding: 32px 24px;
+  }
+}
+
+/* ---- The Name Revealed: three language forms ---- */
+.name-reveal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 32px auto;
+}
+
+.name-reveal-item {
+  background: var(--gray-bg);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.name-reveal-text {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+
+.name-reveal-lang {
+  color: var(--gold-deep);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .name-reveal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- One Church, Many Parishes: emphasis row ---- */
+.one-church-emphasis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin-top: 40px;
+}
+
+.one-church-emphasis span {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--navy);
+  font-size: clamp(1.05rem, 2.6vw, 1.4rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 8px 28px;
+  border-right: 1px solid rgba(200, 162, 74, 0.4);
+}
+
+.one-church-emphasis span:last-child {
+  border-right: none;
+}
+
+@media (max-width: 640px) {
+  .one-church-emphasis {
+    flex-direction: column;
+  }
+
+  .one-church-emphasis span {
+    border-right: none;
+    border-bottom: 1px solid rgba(200, 162, 74, 0.4);
+    padding: 10px 0;
+  }
+
+  .one-church-emphasis span:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ---- Understanding Celestial Worship: reflective question list ---- */
+.worship-questions {
+  max-width: 620px;
+  margin: 28px auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.worship-questions li {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-style: italic;
+  font-size: 1rem;
+  padding-left: 22px;
+  position: relative;
+}
+
+.worship-questions li::before {
+  content: "\2014";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
