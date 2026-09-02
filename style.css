@@ -3163,3 +3163,381 @@ details[open] > .rank-node-summary .rank-node-caret {
   color: var(--navy);
   font-size: 0.98rem;
 }
+
+/* =========================================================
+   Life as a Celestian — Practice Explorer
+   Its own identity: five independent group shells (not one
+   flowchart, not one flat tile grid). Reuses the site's design
+   tokens/spacing/radius/border language established by Leadership
+   & Ranks and Offerings & Giving, but every selector below is a
+   fresh "practice-" namespace — no .rank-*/.giving-* rule is
+   touched or depended upon.
+   ========================================================= */
+
+.practice-group {
+  margin-bottom: 8px;
+}
+
+.practice-group-intro {
+  max-width: 640px;
+  margin: 0 auto 30px;
+  text-align: center;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ---- Shell: tile grid (left/center) + sticky detail panel (right) ---- */
+.practice-shell {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.practice-track {
+  min-width: 0;
+}
+
+.practice-detail-panel {
+  position: sticky;
+  top: 140px;
+  background: var(--gray-bg);
+  border: 1px solid #e6e2d8;
+  border-radius: var(--radius);
+  padding: 26px 24px;
+}
+
+.practice-detail-panel-eyebrow {
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  margin: 0 0 10px;
+}
+
+.practice-detail-panel-title {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.1rem;
+  margin: 0 0 14px;
+  line-height: 1.35;
+}
+
+.practice-detail-panel-placeholder {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+@media (max-width: 1023px) {
+  .practice-shell {
+    display: block;
+  }
+
+  .practice-detail-panel {
+    display: none;
+  }
+}
+
+/* ---- Tile grid ---- */
+.practice-tile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.practice-node-details {
+  display: block;
+}
+
+.practice-node-details > .practice-node-summary {
+  background: var(--gray-bg);
+  border: 1px solid #e6e2d8;
+  border-radius: 10px;
+}
+
+.practice-node-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 20px;
+  text-align: center;
+  min-height: 64px;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+.practice-node-summary::-webkit-details-marker {
+  display: none;
+}
+
+.practice-node-summary:hover {
+  background: rgba(200, 162, 74, 0.1);
+}
+
+.practice-node-summary:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: -2px;
+}
+
+.practice-node-name {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+.practice-node-summary.is-selected {
+  background: rgba(200, 162, 74, 0.16);
+  box-shadow: inset 4px 0 0 var(--gold);
+}
+
+/* Detail body: rendered inline on mobile. On desktop, only the INNER html
+   of .practice-detail-body is cloned into .practice-detail-panel-body, so
+   it arrives without the .practice-detail-body ancestor class — every rule
+   below is written to work identically in both places (see the same
+   pattern already used for .giving-detail-body / .giving-detail-panel-body). */
+.practice-detail-body {
+  padding: 0 20px 22px;
+  text-align: left;
+}
+
+.practice-detail-body p:not(.practice-detail-label):not(.practice-scripture-refs):not(.practice-reflection),
+.practice-detail-panel-body p:not(.practice-detail-label):not(.practice-scripture-refs):not(.practice-reflection) {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  margin: 0 0 14px;
+}
+
+.practice-detail-body p:last-child,
+.practice-detail-panel-body p:last-child {
+  margin-bottom: 0;
+}
+
+.practice-detail-label {
+  display: block;
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 18px 0 8px;
+}
+
+.practice-detail-label:first-child {
+  margin-top: 0;
+}
+
+.practice-scripture-refs {
+  display: block;
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0 0 14px;
+}
+
+/* Featured Scripture: quoted verse text */
+.practice-detail-verse {
+  margin: 0 0 14px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--gold);
+  background: rgba(200, 162, 74, 0.08);
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--navy);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.practice-detail-verse cite {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+}
+
+/* Important theological qualification/understanding — navy-bordered, distinct from a scripture quote */
+.practice-detail-qualifier {
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--navy);
+  background: rgba(16, 33, 63, 0.05);
+  color: var(--text-dark);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+/* Short reflective closing line within "What It Means for Me" */
+.practice-reflection {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--navy);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .practice-shell {
+    max-width: 640px;
+  }
+}
+
+@media (max-width: 560px) {
+  .practice-tile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Understanding Celestial Order: four-way explanation grid ---- */
+.practice-explain-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 820px;
+  margin: 34px auto 0;
+}
+
+.practice-explain-item {
+  background: var(--gray-bg);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  border-top: 3px solid var(--gold);
+}
+
+.practice-explain-item h3 {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 10px;
+}
+
+.practice-explain-item p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .practice-explain-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Final section: spiritual conclusion, not a blockquote ---- */
+.practice-heart-list {
+  max-width: 480px;
+  margin: 28px auto 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  text-align: center;
+}
+
+.practice-heart-list li {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.02rem;
+}
+
+/* ---- Supporting teachings: restrained secondary treatment beneath a
+   group's interactive tiles. Deliberately quiet — no tiles, no panel,
+   no new navigation. ---- */
+.practice-supporting {
+  max-width: 700px;
+  margin: 34px auto 0;
+  padding-top: 28px;
+  border-top: 1px solid #e6e2d8;
+}
+
+.practice-supporting + .practice-supporting {
+  margin-top: 30px;
+}
+
+.practice-supporting-heading {
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  margin: 0 0 14px;
+  text-align: center;
+}
+
+/* Small eyebrow label on a Holy Rites & Sacred Observances entry (e.g. "Annual Observance") */
+.content-list-item p.observance-eyebrow {
+  color: var(--gold-deep);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  margin: 0 0 8px;
+}
+
+/* Reusing the practice- label/scripture/reflection classes inside .content-list-item
+   (Holy Rites & Sacred Observances) needs to out-specify the existing sitewide
+   .content-list-item p rule without touching it. */
+.content-list-item p.practice-detail-label {
+  color: var(--gold-deep);
+}
+
+.content-list-item p.practice-scripture-refs,
+.content-list-item p.practice-reflection {
+  color: var(--navy);
+}
+
+.practice-supporting-body p:not(.practice-detail-label):not(.practice-scripture-refs):not(.practice-reflection) {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  margin: 0 0 12px;
+}
+
+.practice-supporting-body p:last-child {
+  margin-bottom: 0;
+}
+
+.practice-closing-statement {
+  max-width: 680px;
+  margin: 40px auto 0;
+  padding: 40px 36px;
+  background: var(--navy);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.practice-closing-statement p {
+  font-family: var(--font-heading);
+  color: var(--ivory);
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.practice-closing-statement cite {
+  display: block;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+}
