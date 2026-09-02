@@ -3540,4 +3540,47 @@ details[open] > .rank-node-summary .rank-node-caret {
   text-transform: uppercase;
   color: var(--gold-light);
 }
+
+/* =========================================================
+   Order of Service — coming-soon guide panels
+   Reuses the .hub-cta-card visual language (gray-bg, gold top
+   border, shadow, radius) and the existing .historical-badge
+   pill treatment for the "Coming Soon" status, since a static
+   (non-clickable) card is a close cousin of the hub choice card.
+   ========================================================= */
+.service-guide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  max-width: 860px;
+  margin: 36px auto 0;
+}
+
+.service-guide-card {
+  background: var(--gray-bg);
+  border-radius: var(--radius);
+  border-top: 4px solid var(--gold);
+  box-shadow: var(--shadow-soft);
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.service-guide-title {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.35rem;
+  margin: 14px 0 14px;
+}
+
+.service-guide-desc {
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .service-guide-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
 }
