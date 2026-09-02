@@ -823,6 +823,45 @@ body.page-home .site-header {
   opacity: 0.92;
 }
 
+/* Optional extras for page-headers that need more than eyebrow/heading/lead
+   (currently only Offerings & Giving) — an intro paragraph and a featured
+   scripture callout, both styled for the navy page-header background. */
+.page-header-intro {
+  max-width: 620px;
+  margin: 22px auto 0;
+  color: var(--ivory);
+  opacity: 0.92;
+  line-height: 1.8;
+}
+
+.page-header-verse {
+  max-width: 480px;
+  margin: 26px auto 0;
+  padding: 18px 24px;
+  border-left: 3px solid var(--gold-light);
+  background: rgba(255, 255, 255, 0.06);
+  text-align: left;
+}
+
+.page-header-verse p {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--white);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+
+.page-header-verse cite {
+  display: block;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
 /* ---------- Generic section lead/body text (reused across pages) ---------- */
 .section-lead {
   max-width: 680px;
@@ -2843,9 +2882,23 @@ details[open] > .rank-node-summary .rank-node-caret {
    Offerings & Giving — Interactive Giving Guide
    Adapted from the Leadership & Ranks component language
    (border/radius/spacing/color tokens, selected states,
-   desktop detail panel, mobile inline expansion) without
-   modifying any .rank-* rule above. Forms of giving are not
-   sequential, so this uses a tile grid instead of a ladder.
+   mobile inline expansion) without modifying any .rank-*
+   rule above. Forms of giving are not sequential, so this
+   uses a tile grid instead of a ladder.
+
+   The desktop detail panel sits FULL WIDTH BENEATH the grid
+   rather than in a sticky side column — an intentional,
+   approved divergence from the side-panel pattern used by
+   rank-flow.js / practice-explorer.js on the sibling
+   Leadership & Ranks and Life as a Celestian pages.
+
+   Specificity note: any custom-typography text block nested
+   inside .giving-detail-body/.giving-detail-panel-body (the
+   callout, the Ope reflection lines, the mini-compare cells)
+   is written as a non-<p> element (div/blockquote/h4). That
+   sidesteps the generic ".giving-detail-body p" rule below
+   entirely instead of fighting it on specificity — the same
+   reason .giving-detail-verse already uses <blockquote>.
    ========================================================= */
 
 .giving-guide-intro {
@@ -2854,12 +2907,8 @@ details[open] > .rank-node-summary .rank-node-caret {
   text-align: center;
 }
 
-/* ---- Shell: tile grid (left/center) + sticky detail panel (right) ---- */
+/* ---- Shell: tile grid, with the shared detail panel stacked beneath ---- */
 .giving-guide-shell {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 44px;
-  align-items: start;
   max-width: 980px;
   margin: 0 auto;
 }
@@ -2869,12 +2918,12 @@ details[open] > .rank-node-summary .rank-node-caret {
 }
 
 .giving-detail-panel {
-  position: sticky;
-  top: 140px;
+  margin-top: 32px;
   background: var(--gray-bg);
   border: 1px solid #e6e2d8;
+  border-top: 3px solid var(--gold);
   border-radius: var(--radius);
-  padding: 26px 24px;
+  padding: 32px 36px;
 }
 
 .giving-detail-panel-eyebrow {
@@ -2889,8 +2938,8 @@ details[open] > .rank-node-summary .rank-node-caret {
 .giving-detail-panel-title {
   font-family: var(--font-heading);
   color: var(--navy);
-  font-size: 1.15rem;
-  margin: 0 0 14px;
+  font-size: 1.3rem;
+  margin: 0 0 16px;
   line-height: 1.3;
 }
 
@@ -2901,21 +2950,21 @@ details[open] > .rank-node-summary .rank-node-caret {
   margin: 0;
 }
 
-@media (max-width: 1023px) {
-  .giving-guide-shell {
-    display: block;
-  }
+.giving-detail-panel-body {
+  max-width: 720px;
+}
 
+@media (max-width: 1023px) {
   .giving-detail-panel {
     display: none;
   }
 }
 
-/* ---- Tile grid ---- */
+/* ---- Tile grid: 3 columns desktop / 2 tablet / 1 mobile ---- */
 .giving-tile-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -2929,16 +2978,17 @@ details[open] > .rank-node-summary .rank-node-caret {
   background: var(--gray-bg);
   border: 1px solid #e6e2d8;
   border-radius: 10px;
+  height: 100%;
 }
 
 .giving-node-summary {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   list-style: none;
   cursor: pointer;
-  padding: 20px 18px;
+  padding: 24px 18px;
   text-align: center;
   transition: background var(--transition), box-shadow var(--transition);
 }
@@ -2954,6 +3004,35 @@ details[open] > .rank-node-summary .rank-node-caret {
 .giving-node-summary:focus-visible {
   outline: 2px solid var(--gold-deep);
   outline-offset: -2px;
+}
+
+.giving-node-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  background: rgba(200, 162, 74, 0.12);
+  color: var(--gold-deep);
+}
+
+.giving-node-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.giving-node-icon--mark {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
 }
 
 .giving-node-name {
@@ -3020,29 +3099,19 @@ details[open] > .rank-node-summary .rank-node-caret {
   margin-top: 0;
 }
 
-.giving-scripture-list {
-  display: grid;
-  gap: 8px;
-  margin: 0 0 14px;
-}
-
-.giving-scripture-list div {
-  display: flex;
-  gap: 8px;
-  font-size: 0.88rem;
-  line-height: 1.6;
-}
-
-.giving-scripture-list dt {
-  flex: 0 0 auto;
+/* Named subsection within an unusually long detail body (currently only
+   Thanks Offering — Ope and First Fruits use these). */
+.giving-subheading {
+  font-family: var(--font-heading);
   color: var(--navy);
-  font-weight: 700;
-  white-space: nowrap;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  margin: 26px 0 12px;
 }
 
-.giving-scripture-list dd {
-  margin: 0;
-  color: var(--text-muted);
+.giving-detail-body > .giving-subheading:first-child,
+.giving-detail-panel-body > .giving-subheading:first-child {
+  margin-top: 0;
 }
 
 /* Reference-only scripture line (no per-verse gloss supplied) */
@@ -3078,45 +3147,428 @@ details[open] > .rank-node-summary .rank-node-caret {
   text-transform: uppercase;
 }
 
-@media (max-width: 760px) {
-  .giving-guide-shell {
-    max-width: 640px;
-  }
+/* Important theological qualification (Seed's guardrail, First Fruits'
+   distinction) — navy-bordered, distinct from a scripture quote. Its own
+   paragraphs are intentionally left to inherit the generic muted-paragraph
+   styling above; only the container needs its own rule. */
+.giving-detail-qualifier {
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--navy);
+  background: rgba(16, 33, 63, 0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+/* Short standout statement — used both inside a card's detail body and
+   within ordinary content sections (Give According to What God Has Given
+   You, Designated Giving, Seed's guardrail lines). Deliberately a <div>,
+   never a <p> — see the specificity note above. */
+.giving-callout {
+  margin: 0 0 14px;
+  padding: 16px 20px;
+  background: rgba(200, 162, 74, 0.1);
+  border-radius: var(--radius);
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.giving-callout--on-dark {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ivory);
+}
+
+/* ---- Ope: "When Should I Give Thanks?" reflection prompts — read as a
+   litany, not an FAQ list. ---- */
+.ope-reflection-list {
+  display: grid;
+  gap: 16px;
+  margin: 0 0 20px;
+  padding: 20px 0 0;
+  border-top: 1px solid rgba(200, 162, 74, 0.3);
+}
+
+.ope-reflection-item {
+  text-align: center;
+}
+
+.ope-reflection-question {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--navy);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin: 0 0 4px;
+}
+
+.ope-reflection-answer {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--gold-deep);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+/* ---- Ope: "The One Who Returned" (Luke 17:11–19) ---- */
+.ope-display {
+  margin: 20px 0;
+  padding: 26px 22px;
+  background: var(--navy);
+  border-radius: var(--radius);
+  text-align: center;
+  font-family: var(--font-heading);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+/* ---- First Fruits vs. Tithe mini-comparison ---- */
+.giving-mini-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.giving-mini-compare-item {
+  background: var(--gray-bg);
+  border-radius: var(--radius);
+  border-top: 3px solid var(--gold);
+  padding: 20px 18px;
+  text-align: center;
+}
+
+.giving-mini-compare-label {
+  display: block;
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  margin: 0 0 10px;
+}
+
+.giving-mini-compare-question {
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  margin: 0 0 8px;
+}
+
+.giving-mini-compare-answer {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.98rem;
 }
 
 @media (max-width: 560px) {
-  .giving-tile-grid {
+  .giving-mini-compare {
     grid-template-columns: 1fr;
   }
 }
 
-/* ---- Designated Giving: intentionally secondary/quiet ---- */
-.designated-giving-block {
-  max-width: 680px;
+/* Below the desktop panel breakpoint, tiles expand INLINE via native
+   <details> (see giving-guide.js) and any one of them can become very
+   tall. A CSS Grid row does not reliably track a <details> element's
+   expanded height for auto-sizing purposes once it grows this much
+   (verified in testing: the row freezes at a stale size and later
+   content overlaps it) — so grid is dropped in favor of plain block
+   stacking here, which has no such row-sizing step to get wrong. This
+   also means every card gets its own full-width row below desktop,
+   which keeps the longer cards (Ope, First Fruits, Seed) readable
+   rather than cramped into a forced two-up layout. */
+@media (max-width: 1023px) {
+  .giving-guide-shell {
+    max-width: 640px;
+  }
+
+  .giving-tile-grid {
+    display: block;
+  }
+
+  .giving-node-details + .giving-node-details {
+    margin-top: 16px;
+  }
+
+  .giving-detail-panel {
+    padding: 26px 22px;
+  }
+}
+
+/* ---- The Poor Widow (Luke 21:1–4) ---- */
+.widow-feature {
+  max-width: 760px;
   margin: 0 auto;
-  padding: 26px 30px;
-  background: var(--gray-bg);
-  border: 1px solid #e6e2d8;
+  background: var(--navy);
   border-radius: var(--radius);
+  padding: 52px 44px;
+  text-align: center;
 }
 
-.designated-giving-block p {
-  color: var(--text-muted);
-  font-size: 0.92rem;
-  line-height: 1.75;
+.widow-feature-eyebrow {
+  font-family: var(--font-heading);
+  color: var(--gold-light);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin: 0 0 18px;
+}
+
+.widow-feature-display {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--white);
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  line-height: 1.35;
+  margin: 0 0 16px;
+}
+
+.widow-feature-display span {
+  display: block;
+}
+
+.widow-feature-ref {
+  font-family: var(--font-body);
+  color: var(--gold-light);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 28px;
+}
+
+.widow-feature-body {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.widow-feature-body p {
+  color: var(--ivory);
+  opacity: 0.92;
+  line-height: 1.8;
   margin: 0 0 14px;
 }
 
-.designated-giving-block ul {
-  margin: 0 0 14px;
-  padding-left: 22px;
-  color: var(--text-muted);
-  font-size: 0.92rem;
-  line-height: 1.9;
-}
-
-.designated-giving-block p:last-child {
+.widow-feature-body p:last-child {
   margin-bottom: 0;
+}
+
+.widow-feature .giving-callout--on-dark {
+  margin: 26px auto;
+  max-width: 480px;
+}
+
+.widow-feature-closing {
+  max-width: 560px;
+  margin: 10px auto 0;
+  text-align: center;
+}
+
+.widow-feature-closing p {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--white);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 10px;
+}
+
+.widow-feature-closing p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .widow-feature {
+    padding: 40px 26px;
+  }
+
+  .widow-feature-body {
+    text-align: center;
+  }
+}
+
+/* ---- Generic small eyebrow label above a section heading, for a
+   light-background section (Designated Giving, Give Online) — the
+   navy page-header uses .page-header-eyebrow instead. ---- */
+.content-eyebrow {
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  text-align: center;
+  margin: 0 0 12px;
+}
+
+/* ---- Generic scripture pull-quote for ordinary (light-background)
+   content sections — Giving Is Worship, What Is an Offering?, Give
+   According to What God Has Given You, Heart Behind Every Gift. ---- */
+.scripture-quote {
+  max-width: 560px;
+  margin: 24px auto 0;
+  padding: 20px 26px;
+  border-left: 3px solid var(--gold);
+  background: rgba(200, 162, 74, 0.06);
+  text-align: left;
+}
+
+.scripture-quote p {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--navy);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin: 0 0 8px;
+}
+
+.scripture-quote cite {
+  display: block;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+.scripture-quote + .scripture-quote {
+  margin-top: 16px;
+}
+
+/* ---- Quick Comparison ---- */
+.comparison-table-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 16px 20px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.comparison-table thead th {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.comparison-table tbody tr:nth-child(even) {
+  background: var(--gray-bg);
+}
+
+.comparison-table tbody td:first-child {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.comparison-table tbody td {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border-bottom: 1px solid #e6e2d8;
+}
+
+.comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 700px) {
+  .comparison-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .comparison-table,
+  .comparison-table tbody,
+  .comparison-table tr,
+  .comparison-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .comparison-table tr {
+    padding: 18px 20px;
+    border-bottom: 1px solid #e6e2d8;
+  }
+
+  .comparison-table tbody tr:nth-child(even) {
+    background: var(--gray-bg);
+  }
+
+  .comparison-table tbody td:first-child {
+    white-space: normal;
+  }
+
+  .comparison-table td {
+    padding: 4px 0;
+    border-bottom: none;
+  }
+
+  .comparison-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-family: var(--font-heading);
+    color: var(--gold-deep);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.66rem;
+    margin-top: 10px;
+  }
+
+  .comparison-table td:first-child::before {
+    margin-top: 0;
+  }
+}
+
+/* ---- Designated Giving: max-width tweak on top of .giving-callout ---- */
+.designated-giving-note {
+  max-width: 680px;
+  margin: 24px auto 0;
+}
+
+/* ---- Heart Behind Every Gift: six short contrast statements ---- */
+.giving-contrast-list {
+  max-width: 560px;
+  margin: 30px auto 34px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 14px;
+  text-align: center;
+}
+
+.giving-contrast-list li {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--navy);
+  font-size: 1.05rem;
+  line-height: 1.5;
 }
 
 /* ---- Heart of Giving: restrained pull-quote ---- */
@@ -3162,6 +3614,17 @@ details[open] > .rank-node-summary .rank-node-caret {
   font-family: var(--font-heading);
   color: var(--navy);
   font-size: 0.98rem;
+}
+
+/* ---- Give Online CTA ---- */
+.give-cta {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.give-cta .btn {
+  margin-top: 8px;
 }
 
 /* =========================================================

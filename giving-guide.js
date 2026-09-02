@@ -1,10 +1,10 @@
 /* =========================================================
    Offerings & Giving — Interactive Giving Guide
    Used only by /about/offerings.html. Mirrors the progressive-
-   enhancement pattern used by rank-flow.js (Leadership & Ranks)
+   enhancement pattern used by rank-flow.js / practice-explorer.js
    but is a standalone module — it does not share state or
-   markup hooks with that page, so this file can change freely
-   without any risk to the Rank Explorer.
+   markup hooks with those pages, so this file can change freely
+   without any risk to the Rank Explorer or Practice Explorer.
 
    Progressive enhancement:
    - No JS: every tile is a native <details>/<summary>. Tapping
@@ -14,8 +14,16 @@
    - With JS, at desktop widths (matching the CSS panel
      breakpoint): clicking a tile's summary is intercepted so it
      does not expand inline; instead its detail content is
-     mirrored into the sticky side panel and the tile is marked
-     as the selected one.
+     mirrored into the shared panel BENEATH the grid, and the
+     tile is marked as the selected one.
+
+   Accessibility: every <details> also gets a native "toggle"
+   listener that keeps its summary's aria-expanded in sync with
+   the real open state. That covers native mobile disclosure,
+   which the desktop click-intercept path deliberately bypasses
+   (on desktop the tile's own <details> never actually opens —
+   aria-expanded there is driven by selectTile() instead, based
+   on which tile is mirrored into the panel).
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -86,12 +94,21 @@ document.addEventListener("DOMContentLoaded", function () {
         selectTile(details, summary);
       }
     });
+
+    details.addEventListener("toggle", function () {
+      if (isDesktop()) return; // desktop selection state is tracked via selectTile() instead
+      summary.setAttribute("aria-expanded", details.open ? "true" : "false");
+    });
   });
 
   function applyModeReset() {
     closeAllNative();
     clearSelection();
     resetPanel();
+    allDetails.forEach(function (details) {
+      var summary = details.querySelector(".giving-node-summary");
+      if (summary) summary.setAttribute("aria-expanded", "false");
+    });
   }
 
   if (typeof desktopQuery.addEventListener === "function") {
