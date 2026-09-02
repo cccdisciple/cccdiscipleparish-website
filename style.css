@@ -3328,10 +3328,6 @@ details[open] > .rank-node-summary .rank-node-caret {
   margin: 0 0 16px;
 }
 
-.widow-feature-display span {
-  display: block;
-}
-
 .widow-feature-ref {
   font-family: var(--font-body);
   color: var(--gold-light);

@@ -16,6 +16,13 @@
      does not expand inline; instead its detail content is
      mirrored into the shared panel BENEATH the grid, and the
      tile is marked as the selected one.
+   - Also at desktop widths, the first tile (Collection) is
+     selected automatically as soon as the panel exists, so the
+     panel never sits on its empty placeholder before a visitor
+     has clicked anything — both on initial load and whenever a
+     resize crosses back into desktop width. Mobile/tablet never
+     auto-expands anything; every tile stays collapsed until the
+     visitor opens it.
 
    Accessibility: every <details> also gets a native "toggle"
    listener that keeps its summary's aria-expanded in sync with
@@ -101,6 +108,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  function selectDefaultDesktopTile() {
+    if (!isDesktop()) return; // mobile/tablet must stay fully collapsed
+    var collection = allDetails[0];
+    if (!collection) return;
+    var summary = collection.querySelector(".giving-node-summary");
+    if (summary) selectTile(collection, summary);
+  }
+
   function applyModeReset() {
     closeAllNative();
     clearSelection();
@@ -109,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var summary = details.querySelector(".giving-node-summary");
       if (summary) summary.setAttribute("aria-expanded", "false");
     });
+    selectDefaultDesktopTile();
   }
 
   if (typeof desktopQuery.addEventListener === "function") {
@@ -116,4 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
   } else if (typeof desktopQuery.addListener === "function") {
     desktopQuery.addListener(applyModeReset);
   }
+
+  selectDefaultDesktopTile();
 });
