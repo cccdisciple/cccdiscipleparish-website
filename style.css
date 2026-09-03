@@ -1813,6 +1813,17 @@ body.page-home .site-header {
   }
 }
 
+/* ---- Three-up explanatory grid (reuses .faith-item) ---- */
+.faith-grid--three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .faith-grid--three {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---- Five-up explanatory grid (reuses .faith-item) ---- */
 .faith-grid--five {
   grid-template-columns: repeat(5, 1fr);
