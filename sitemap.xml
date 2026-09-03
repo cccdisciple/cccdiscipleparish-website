@@ -1,36 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cccdiscipleparish.org/index.html</loc>
+    <loc>https://cccdiscipleparish.org/</loc>
   </url>
   <url>
-    <loc>https://cccdiscipleparish.org/about/faith.html</loc>
+    <loc>https://cccdiscipleparish.org/about/disciple-parish</loc>
   </url>
   <url>
-    <loc>https://cccdiscipleparish.org/about/celestial-church.html</loc>
+    <loc>https://cccdiscipleparish.org/about/celestial-church</loc>
   </url>
   <url>
-    <loc>https://cccdiscipleparish.org/services/index.html</loc>
+    <loc>https://cccdiscipleparish.org/about/faith</loc>
   </url>
   <url>
-    <loc>https://cccdiscipleparish.org/services/calendar.html</loc>
+    <loc>https://cccdiscipleparish.org/about/life-as-a-celestian</loc>
   </url>
   <url>
-    <loc>https://cccdiscipleparish.org/watch-live/index.html</loc>
+    <loc>https://cccdiscipleparish.org/about/leadership-ranks/</loc>
   </url>
   <url>
-    <loc>https://cccdiscipleparish.org/new-here/index.html</loc>
+    <loc>https://cccdiscipleparish.org/about/leadership-ranks/men/</loc>
   </url>
   <url>
-    <loc>https://cccdiscipleparish.org/give/index.html</loc>
+    <loc>https://cccdiscipleparish.org/about/leadership-ranks/women/</loc>
   </url>
   <url>
-    <loc>https://cccdiscipleparish.org/connect/index.html</loc>
+    <loc>https://cccdiscipleparish.org/about/faq</loc>
   </url>
   <url>
-    <loc>https://cccdiscipleparish.org/connect/prayer.html</loc>
+    <loc>https://cccdiscipleparish.org/about/offerings</loc>
   </url>
   <url>
-    <loc>https://cccdiscipleparish.org/connect/gallery.html</loc>
+    <loc>https://cccdiscipleparish.org/worship/</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/order-of-service</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/mercy-land</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/sutana</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/candles</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/incense</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/sanctuary</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/water</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/prophetic-ministry</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/holy-marys-day</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/naming-christening</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/choir</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/spiritual-work</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/worship/new-moon-service</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/bible-lessons</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/services/</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/services/calendar</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/watch-live/</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/new-here/</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/give/</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/causes/</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/connect/</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/connect/prayer</loc>
+  </url>
+  <url>
+    <loc>https://cccdiscipleparish.org/connect/gallery</loc>
   </url>
 </urlset>
