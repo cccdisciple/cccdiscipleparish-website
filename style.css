@@ -4151,6 +4151,77 @@ details[open] > .rank-node-summary .rank-node-caret {
   color: var(--gold-deep);
 }
 
+/* ---- Rank structure orientation: three related concepts as a quiet
+   editorial row (hairline dividers, no cards/icons), not a feature grid.
+   Deliberately lighter and shorter than the rank-progression links below. ---- */
+.rank-concepts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  max-width: 940px;
+  margin: 48px auto 0;
+  padding-top: 36px;
+  border-top: 1px solid #e6e2d8;
+}
+
+.rank-concept {
+  padding: 0 32px;
+  border-left: 1px solid #e6e2d8;
+  text-align: center;
+}
+
+.rank-concept:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.rank-concept:last-child {
+  padding-right: 0;
+}
+
+.rank-concept-heading {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin: 0 0 12px;
+}
+
+.rank-concept-body {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+  line-height: 1.75;
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .rank-concepts {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .rank-concept {
+    padding: 0 0 28px;
+    margin-bottom: 28px;
+    border-left: none;
+    border-bottom: 1px solid #e6e2d8;
+  }
+
+  .rank-concept:first-child {
+    padding-left: 0;
+  }
+
+  .rank-concept:last-child {
+    padding-right: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+}
+
 /* ---- Six editorial principles: numbered rows that flow across two
    columns on desktop (CSS multi-column, not a grid), so each principle
    keeps its own natural height instead of being forced into a uniform
