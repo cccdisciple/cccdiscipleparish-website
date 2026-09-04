@@ -4910,3 +4910,418 @@ body.js-explorer-ready .explorer-legacy-hide-all {
   left: 0;
   color: var(--gold);
 }
+
+/* =========================================================
+   Order of Service: numbered sequence with progressive
+   disclosure (Wednesday & Friday Evening Service)
+   ========================================================= */
+
+.order-selector-note {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: -8px 0 0;
+}
+
+.service-guide-card--available {
+  text-align: left;
+}
+
+.service-guide-card--available .service-guide-title {
+  margin-top: 4px;
+}
+
+.service-guide-card--available .btn {
+  margin-top: 18px;
+}
+
+/* ---- Hymn theme comparison (reuses .compare-grid proportions) ---- */
+.order-hymn-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  max-width: 820px;
+  margin: 34px auto 0;
+}
+
+.order-hymn-col {
+  border-radius: var(--radius);
+  padding: 26px 24px;
+}
+
+.order-hymn-col--mercy {
+  background: rgba(200, 162, 74, 0.08);
+  border: 1px solid rgba(200, 162, 74, 0.35);
+}
+
+.order-hymn-col--power {
+  background: rgba(58, 95, 128, 0.06);
+  border: 1px solid rgba(58, 95, 128, 0.3);
+}
+
+.order-hymn-col-heading {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  text-align: center;
+  margin: 0 0 4px;
+}
+
+.order-hymn-col--mercy .order-hymn-col-heading {
+  color: var(--gold-deep);
+}
+
+.order-hymn-col--power .order-hymn-col-heading {
+  color: #3a5f80;
+}
+
+.order-hymn-col-sub {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin: 0 0 18px;
+}
+
+.order-hymn-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.order-hymn-list > div {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 9px 14px;
+}
+
+.order-hymn-list dt {
+  font-family: var(--font-heading);
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.order-hymn-list dd {
+  margin: 2px 0 0;
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 700px) {
+  .order-hymn-compare {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Movement quick-nav uses .resource-nav directly; no new rules needed ---- */
+
+/* ---- Movements ---- */
+.order-movement {
+  max-width: 700px;
+  margin: 0 auto 56px;
+  scroll-margin-top: 100px;
+}
+
+.order-movement:last-child {
+  margin-bottom: 0;
+}
+
+.order-movement-heading {
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 26px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e6e2d8;
+}
+
+/* ---- Steps ---- */
+.order-steps {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 44px;
+}
+
+.order-steps::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(200, 162, 74, 0.22), rgba(200, 162, 74, 0.55));
+}
+
+.order-step {
+  position: relative;
+  margin-bottom: 18px;
+  scroll-margin-top: 100px;
+}
+
+.order-step:last-child {
+  margin-bottom: 0;
+}
+
+.order-step-number {
+  position: absolute;
+  left: -44px;
+  top: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--gold);
+  color: var(--navy);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.order-step-card {
+  background: var(--gray-bg);
+  border: 1px solid #e6e2d8;
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+
+.order-step-title {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1.05rem;
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+
+.order-step-subaction + .order-step-subaction {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed #dcd7c8;
+}
+
+.order-step-subaction-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 6px;
+}
+
+.order-step-instruction {
+  color: var(--text-dark);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.order-step-instruction + .order-step-instruction {
+  margin-top: 10px;
+}
+
+.order-step-response {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-left: 3px solid var(--gold);
+  background: rgba(200, 162, 74, 0.08);
+  border-radius: 0 8px 8px 0;
+  color: var(--navy);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.order-step-response-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 3px;
+}
+
+.order-holy-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--navy);
+}
+
+/* ---- Day-difference chips (Mercy Day / Power Day) ---- */
+.order-day-themes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.order-day-chip {
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+.order-day-chip--mercy {
+  background: rgba(200, 162, 74, 0.1);
+  border: 1px solid rgba(200, 162, 74, 0.35);
+}
+
+.order-day-chip--power {
+  background: rgba(58, 95, 128, 0.08);
+  border: 1px solid rgba(58, 95, 128, 0.3);
+}
+
+.order-day-chip-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.order-day-chip--mercy .order-day-chip-label {
+  color: var(--gold-deep);
+}
+
+.order-day-chip--power .order-day-chip-label {
+  color: #3a5f80;
+}
+
+@media (max-width: 480px) {
+  .order-day-themes {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- "Learn the Meaning" progressive disclosure ----
+   Uses the native <details>/<summary> element (fully keyboard-
+   operable and screen-reader-correct without JS). The open/close
+   reveal is animated with the CSS grid-template-rows 0fr -> 1fr
+   technique rather than relying on the browser's instant
+   display:none/block toggle, so the panel eases open instead of
+   snapping. prefers-reduced-motion is already handled globally
+   (see the sitewide rule near the top of this file). */
+.order-details {
+  margin-top: 14px;
+}
+
+.order-details-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--gold-deep);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 4px 2px;
+  transition: color var(--transition);
+}
+
+.order-details-summary::-webkit-details-marker {
+  display: none;
+}
+
+.order-details-summary:hover {
+  color: var(--navy);
+}
+
+.order-details-summary:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.order-details-caret {
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+.order-details[open] > .order-details-summary .order-details-caret {
+  transform: rotate(-135deg);
+}
+
+.order-details:not([open]) > .order-details-body-wrap,
+.order-details[open] > .order-details-body-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.order-details[open] > .order-details-body-wrap {
+  grid-template-rows: 1fr;
+}
+
+.order-details-body {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.order-details-body-inner {
+  padding-top: 14px;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.order-details-body-inner p {
+  margin: 0 0 12px;
+}
+
+.order-details-body-inner p:last-child {
+  margin-bottom: 0;
+}
+
+.order-details-body-inner strong {
+  color: var(--navy);
+}
+
+.order-step-crossref {
+  margin-top: 14px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 560px) {
+  .order-steps {
+    padding-left: 38px;
+  }
+
+  .order-steps::before {
+    left: 14px;
+  }
+
+  .order-step-number {
+    left: -38px;
+    width: 30px;
+    height: 30px;
+    font-size: 0.82rem;
+  }
+
+  .order-step-card {
+    padding: 16px 16px;
+  }
+}
+
+.order-back-to-top {
+  display: block;
+  text-align: center;
+  margin: 46px auto 0;
+}
