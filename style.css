@@ -4912,416 +4912,635 @@ body.js-explorer-ready .explorer-legacy-hide-all {
 }
 
 /* =========================================================
-   Order of Service: numbered sequence with progressive
-   disclosure (Wednesday & Friday Evening Service)
+   Order of Service — hub directory
+   (/worship/order-of-service/)
    ========================================================= */
 
-.order-selector-note {
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  margin: -8px 0 0;
+.hub-directory {
+  max-width: 640px;
+  margin: 0 auto;
+  border-top: 1px solid #e6e2d8;
 }
 
-.service-guide-card--available {
-  text-align: left;
+.hub-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px 4px;
+  border-bottom: 1px solid #e6e2d8;
+  color: inherit;
+  transition: background var(--transition);
 }
 
-.service-guide-card--available .service-guide-title {
-  margin-top: 4px;
+a.hub-row:hover,
+a.hub-row:focus-visible {
+  background: rgba(200, 162, 74, 0.06);
 }
 
-.service-guide-card--available .btn {
-  margin-top: 18px;
+a.hub-row:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: -2px;
 }
 
-/* ---- Hymn theme comparison (reuses .compare-grid proportions) ---- */
-.order-hymn-compare {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-  max-width: 820px;
-  margin: 34px auto 0;
+.hub-row--muted {
+  opacity: 0.72;
 }
 
-.order-hymn-col {
-  border-radius: var(--radius);
-  padding: 26px 24px;
-}
-
-.order-hymn-col--mercy {
-  background: rgba(200, 162, 74, 0.08);
-  border: 1px solid rgba(200, 162, 74, 0.35);
-}
-
-.order-hymn-col--power {
-  background: rgba(58, 95, 128, 0.06);
-  border: 1px solid rgba(58, 95, 128, 0.3);
-}
-
-.order-hymn-col-heading {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  text-align: center;
-  margin: 0 0 4px;
-}
-
-.order-hymn-col--mercy .order-hymn-col-heading {
+.hub-row-icon {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(200, 162, 74, 0.12);
   color: var(--gold-deep);
+  margin-top: 2px;
 }
 
-.order-hymn-col--power .order-hymn-col-heading {
-  color: #3a5f80;
+.hub-row-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.order-hymn-col-sub {
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  margin: 0 0 18px;
+.hub-row-body {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
-.order-hymn-list {
-  display: grid;
-  gap: 10px;
-  margin: 0;
-}
-
-.order-hymn-list > div {
-  background: var(--white);
-  border-radius: 8px;
-  padding: 9px 14px;
-}
-
-.order-hymn-list dt {
+.hub-row-title {
   font-family: var(--font-heading);
-  font-size: 0.64rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-.order-hymn-list dd {
-  margin: 2px 0 0;
   color: var(--navy);
+  font-size: 1.05rem;
   font-weight: 600;
-  font-size: 0.92rem;
+  margin: 0 0 3px;
 }
 
-@media (max-width: 700px) {
-  .order-hymn-compare {
-    grid-template-columns: 1fr;
-  }
+.hub-row-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
-/* ---- Movement quick-nav uses .resource-nav directly; no new rules needed ---- */
-
-/* ---- Movements ---- */
-.order-movement {
-  max-width: 700px;
-  margin: 0 auto 56px;
-  scroll-margin-top: 100px;
+.hub-row-aside {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 8px;
+  white-space: nowrap;
 }
 
-.order-movement:last-child {
-  margin-bottom: 0;
-}
-
-.order-movement-heading {
+.hub-row-status {
   font-family: var(--font-heading);
-  color: var(--gold-deep);
-  font-size: 0.82rem;
-  letter-spacing: 0.14em;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hub-row-action {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--gold-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hub-row-action svg {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--transition);
+}
+
+a.hub-row:hover .hub-row-action svg,
+a.hub-row:focus-visible .hub-row-action svg {
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   Wednesday & Friday Evening Service — weekday guide
+   (/worship/order-of-service/weekday/)
+   ========================================================= */
+
+/* ---- Compact page intro (deliberately not the standard dark
+   .page-header band — this page is a dense reference, not a hero) ---- */
+.weekday-intro {
+  padding: 48px 0 36px;
   text-align: center;
-  margin: 0 0 26px;
-  padding-bottom: 14px;
   border-bottom: 1px solid #e6e2d8;
 }
 
-/* ---- Steps ---- */
-.order-steps {
-  position: relative;
+.weekday-intro-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--gold-deep);
+  margin-bottom: 14px;
+}
+
+.weekday-intro-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.weekday-intro-heading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--navy);
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  letter-spacing: 0.01em;
+  margin: 0 0 10px;
+}
+
+.weekday-intro-days {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin: 0 0 20px;
+}
+
+.weekday-intro-lead {
+  max-width: 620px;
+  margin: 0 auto;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+/* ---- Rail + reading column layout ---- */
+.weekday-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  max-width: 900px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .weekday-layout {
+    grid-template-columns: 210px 1fr;
+    gap: 56px;
+    max-width: 1080px;
+  }
+}
+
+/* Mobile/tablet: a single <details> acts as "Jump to Section".
+   Desktop: the same element is forced open, its summary hidden,
+   and it becomes a quiet sticky rail — no duplicated markup. */
+.weekday-rail {
+  margin: 32px 0 0;
+}
+
+.weekday-rail-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
   list-style: none;
-  margin: 0;
-  padding: 0 0 0 44px;
-}
-
-.order-steps::before {
-  content: "";
-  position: absolute;
-  left: 17px;
-  top: 6px;
-  bottom: 6px;
-  width: 2px;
-  background: linear-gradient(180deg, rgba(200, 162, 74, 0.22), rgba(200, 162, 74, 0.55));
-}
-
-.order-step {
-  position: relative;
-  margin-bottom: 18px;
-  scroll-margin-top: 100px;
-}
-
-.order-step:last-child {
-  margin-bottom: 0;
-}
-
-.order-step-number {
-  position: absolute;
-  left: -44px;
-  top: 14px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--white);
-  border: 2px solid var(--gold);
+  padding: 12px 16px;
+  border: 1px solid #e6e2d8;
+  border-radius: 8px;
+  background: var(--gray-bg);
   color: var(--navy);
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.weekday-rail-summary::-webkit-details-marker {
+  display: none;
+}
+
+.weekday-rail-summary:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 2px;
+}
+
+.weekday-rail-summary svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.weekday-rail-nav {
+  padding: 6px 4px 6px 20px;
+  position: relative;
+}
+
+.weekday-rail-nav::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: #e6e2d8;
+}
+
+.weekday-rail-item {
+  display: block;
+  position: relative;
+  padding: 9px 0 9px 16px;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.4;
+  transition: color var(--transition);
+}
+
+.weekday-rail-item::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 15px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1.5px solid var(--gold);
+}
+
+.weekday-rail-item:hover,
+.weekday-rail-item:focus-visible {
+  color: var(--navy);
+}
+
+.weekday-rail-item:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 2px;
+}
+
+.weekday-rail-item.is-active {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.weekday-rail-item.is-active::before {
+  background: var(--gold);
+}
+
+.weekday-rail-item-range {
+  display: block;
+  font-size: 0.74rem;
+  color: #9a9382;
+}
+
+@media (min-width: 1024px) {
+  /* A closed <details> excludes its non-summary content from layout
+     at the rendering-engine level — no CSS override on the child can
+     defeat this. order-of-service.js sets the real `open` property
+     on this element at this breakpoint; without JS, it still works
+     as an honest, native, closed-by-default disclosure the visitor
+     can click open. */
+  .weekday-rail-summary {
+    display: none;
+  }
+
+  .weekday-rail {
+    position: sticky;
+    top: 110px;
+    margin: 0;
+  }
+
+  .weekday-rail-nav {
+    padding-left: 20px;
+  }
+}
+
+/* ---- Reading column ---- */
+.weekday-reading {
+  min-width: 0;
+  padding: 40px 0 0;
+}
+
+@media (min-width: 1024px) {
+  .weekday-reading {
+    padding-top: 4px;
+  }
+}
+
+.step-movement {
+  scroll-margin-top: 110px;
+}
+
+.step-movement + .step-movement {
+  margin-top: 52px;
+  padding-top: 40px;
+  border-top: 1px solid #e6e2d8;
+}
+
+.step-movement-heading {
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+}
+
+.step-movement-range {
+  color: #9a9382;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+}
+
+.step-list {
+  position: relative;
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0 0 0 40px;
+}
+
+.step-list::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: #e6e2d8;
+}
+
+.step {
+  position: relative;
+  scroll-margin-top: 110px;
+}
+
+.step + .step {
+  margin-top: 34px;
+}
+
+.step-marker {
+  position: absolute;
+  left: -40px;
+  top: 1px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1.5px solid var(--gold);
+  color: var(--navy);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
 }
 
-.order-step-card {
-  background: var(--gray-bg);
-  border: 1px solid #e6e2d8;
-  border-radius: var(--radius);
-  padding: 20px 22px;
-}
-
-.order-step-title {
+.step-title {
   font-family: var(--font-heading);
   color: var(--navy);
   font-size: 1.05rem;
-  margin: 0 0 8px;
+  font-weight: 600;
   line-height: 1.4;
+  margin: 2px 0 8px;
 }
 
-.order-step-subaction + .order-step-subaction {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px dashed #dcd7c8;
-}
-
-.order-step-subaction-label {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 0.66rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold-deep);
-  margin-bottom: 6px;
-}
-
-.order-step-instruction {
+.step-instruction {
   color: var(--text-dark);
   line-height: 1.75;
   margin: 0;
 }
 
-.order-step-instruction + .order-step-instruction {
+.step-instruction + .step-instruction {
   margin-top: 10px;
 }
 
-.order-step-response {
-  margin: 12px 0 0;
-  padding: 10px 14px;
-  border-left: 3px solid var(--gold);
-  background: rgba(200, 162, 74, 0.08);
-  border-radius: 0 8px 8px 0;
-  color: var(--navy);
-  font-size: 0.94rem;
-  line-height: 1.6;
+.step-response {
+  margin: 10px 0 0;
+  color: var(--text-dark);
+  line-height: 1.7;
+  font-style: italic;
 }
 
-.order-step-response-label {
+.step-response-label {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-right: 8px;
+}
+
+.step-subaction + .step-subaction {
+  margin-top: 18px;
+}
+
+.step-subaction-label {
   display: block;
   font-family: var(--font-heading);
-  font-size: 0.64rem;
+  font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gold-deep);
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
 
-.order-holy-name {
+.step-holy-name {
   font-family: var(--font-heading);
   font-weight: 600;
-  letter-spacing: 0.02em;
   color: var(--navy);
 }
 
-/* ---- Day-difference chips (Mercy Day / Power Day) ---- */
-.order-day-themes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+.step-crossref {
+  margin: 10px 0 0;
+  font-size: 0.88rem;
+}
+
+/* ---- Day differences: thin accent rule, never color alone ---- */
+.step-day-diff {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
   margin-top: 12px;
 }
 
-.order-day-chip {
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 0.86rem;
-  line-height: 1.4;
+.step-day-diff-item {
+  flex: 1 1 200px;
+  padding-left: 12px;
+  border-left: 2px solid var(--gold);
 }
 
-.order-day-chip--mercy {
-  background: rgba(200, 162, 74, 0.1);
-  border: 1px solid rgba(200, 162, 74, 0.35);
+.step-day-diff-item--power {
+  border-left-color: #3a5f80;
 }
 
-.order-day-chip--power {
-  background: rgba(58, 95, 128, 0.08);
-  border: 1px solid rgba(58, 95, 128, 0.3);
-}
-
-.order-day-chip-label {
+.step-day-diff-label {
   display: block;
   font-family: var(--font-heading);
-  font-size: 0.64rem;
+  font-size: 0.66rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: var(--gold-deep);
   margin-bottom: 2px;
 }
 
-.order-day-chip--mercy .order-day-chip-label {
-  color: var(--gold-deep);
-}
-
-.order-day-chip--power .order-day-chip-label {
+.step-day-diff-item--power .step-day-diff-label {
   color: #3a5f80;
 }
 
-@media (max-width: 480px) {
-  .order-day-themes {
-    grid-template-columns: 1fr;
-  }
+.step-day-diff-value {
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.94rem;
 }
 
-/* ---- "Learn the Meaning" progressive disclosure ----
-   Uses the native <details>/<summary> element (fully keyboard-
-   operable and screen-reader-correct without JS). The open/close
-   reveal is animated with the CSS grid-template-rows 0fr -> 1fr
-   technique rather than relying on the browser's instant
-   display:none/block toggle, so the panel eases open instead of
-   snapping. prefers-reduced-motion is already handled globally
-   (see the sitewide rule near the top of this file). */
-.order-details {
+/* ---- "Learn the Meaning" disclosure: understated, full-width bar ---- */
+.step-disclosure {
   margin-top: 14px;
 }
 
-.order-details-summary {
-  display: inline-flex;
+.step-disclosure-summary {
+  display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 10px;
   cursor: pointer;
   list-style: none;
+  padding: 10px 14px;
+  border: 1px solid rgba(200, 162, 74, 0.3);
+  border-radius: 8px;
+  background: rgba(200, 162, 74, 0.06);
   color: var(--gold-deep);
-  font-family: var(--font-heading);
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 4px 2px;
-  transition: color var(--transition);
+  transition: background var(--transition), border-color var(--transition);
 }
 
-.order-details-summary::-webkit-details-marker {
+.step-disclosure[open] > .step-disclosure-summary {
+  border-radius: 8px 8px 0 0;
+}
+
+.step-disclosure-summary::-webkit-details-marker {
   display: none;
 }
 
-.order-details-summary:hover {
-  color: var(--navy);
+.step-disclosure-summary:hover {
+  background: rgba(200, 162, 74, 0.11);
 }
 
-.order-details-summary:focus-visible {
+.step-disclosure-summary:focus-visible {
   outline: 2px solid var(--gold-deep);
-  outline-offset: 3px;
-  border-radius: 4px;
+  outline-offset: 2px;
 }
 
-.order-details-caret {
+.step-disclosure-icon {
   flex: 0 0 auto;
-  width: 6px;
-  height: 6px;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: rotate(45deg);
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.step-disclosure-question {
+  flex: 1 1 auto;
+}
+
+.step-disclosure-chevron {
+  flex: 0 0 auto;
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   transition: transform 0.3s ease;
 }
 
-.order-details[open] > .order-details-summary .order-details-caret {
-  transform: rotate(-135deg);
+.step-disclosure[open] > .step-disclosure-summary .step-disclosure-chevron {
+  transform: rotate(180deg);
 }
 
-.order-details:not([open]) > .order-details-body-wrap,
-.order-details[open] > .order-details-body-wrap {
+.step-disclosure:not([open]) > .step-disclosure-body-wrap,
+.step-disclosure[open] > .step-disclosure-body-wrap {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.35s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-.order-details[open] > .order-details-body-wrap {
+.step-disclosure[open] > .step-disclosure-body-wrap {
   grid-template-rows: 1fr;
 }
 
-.order-details-body {
+.step-disclosure-body {
   overflow: hidden;
   min-height: 0;
 }
 
-.order-details-body-inner {
-  padding-top: 14px;
+.step-disclosure-body-inner {
+  padding: 14px 16px 16px;
+  background: var(--ivory);
+  border: 1px solid rgba(200, 162, 74, 0.3);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
   color: var(--text-muted);
   font-size: 0.92rem;
   line-height: 1.75;
 }
 
-.order-details-body-inner p {
+.step-disclosure-body-inner p {
   margin: 0 0 12px;
 }
 
-.order-details-body-inner p:last-child {
+.step-disclosure-body-inner p:last-child {
   margin-bottom: 0;
 }
 
-.order-details-body-inner strong {
+.step-disclosure-body-inner strong {
   color: var(--navy);
 }
 
-.order-step-crossref {
-  margin-top: 14px;
-  font-size: 0.9rem;
-}
-
 @media (max-width: 560px) {
-  .order-steps {
-    padding-left: 38px;
+  .step-list {
+    padding-left: 34px;
   }
 
-  .order-steps::before {
-    left: 14px;
+  .step-list::before {
+    left: 11px;
   }
 
-  .order-step-number {
-    left: -38px;
-    width: 30px;
-    height: 30px;
-    font-size: 0.82rem;
+  .step-marker {
+    left: -34px;
+    width: 24px;
+    height: 24px;
+    font-size: 0.74rem;
   }
-
-  .order-step-card {
-    padding: 16px 16px;
-  }
-}
-
-.order-back-to-top {
-  display: block;
-  text-align: center;
-  margin: 46px auto 0;
 }
