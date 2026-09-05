@@ -5105,8 +5105,11 @@ a.hub-row:focus-visible .hub-row-action svg {
 }
 
 /* =========================================================
-   Wednesday & Friday Evening Service — weekday guide
-   (/worship/order-of-service/weekday/)
+   Order of Service — shared step/timeline system
+   Used by both /worship/order-of-service/weekday/ (Wednesday &
+   Friday) and /worship/order-of-service/sunday/. Class names below
+   still read "weekday-*" for the intro/rail/layout shell, but the
+   system is shared — see the note above order-of-service.js.
    ========================================================= */
 
 /* ---- Compact page intro (deliberately not the standard dark
@@ -5451,6 +5454,48 @@ a.hub-row:focus-visible .hub-row-action svg {
 .step-crossref {
   margin: 10px 0 0;
   font-size: 0.88rem;
+}
+
+/* ---- Small educational note: lighter than a disclosure, for a
+   one-line aside that doesn't warrant its own "Learn the Meaning"
+   control (Sunday page). ---- */
+.step-note {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+/* ---- Directional sequence (Sunday Seven Hallelujahs): generalizes
+   the day-diff row pattern to four equal items. No per-direction
+   color coding — the four directions carry no distinct meaning. ---- */
+.step-directions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  margin-top: 14px;
+}
+
+.step-direction-item {
+  flex: 1 1 130px;
+  padding-left: 12px;
+  border-left: 2px solid var(--gold);
+}
+
+.step-direction-compass {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 2px;
+}
+
+.step-direction-count {
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.94rem;
 }
 
 /* ---- Day differences: thin accent rule, never color alone ---- */

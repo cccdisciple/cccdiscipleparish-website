@@ -1,6 +1,7 @@
 /* =========================================================
-   Wednesday & Friday Order of Service — movement rail
-   Used only by /worship/order-of-service/weekday/.
+   Order of Service — movement rail
+   Shared by /worship/order-of-service/weekday/ and
+   /worship/order-of-service/sunday/.
 
    Progressive enhancement:
    - No JS: the movement list is a native <details>/<summary>
