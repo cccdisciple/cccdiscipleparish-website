@@ -6178,7 +6178,12 @@ details[open] > .rank-branch-tab .rank-branch-tab-caret {
 
 .rank-arch-callout {
   text-align: left;
-  margin-top: 18px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e6e2d8;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
 }
 
 .rank-arch-link {
@@ -6199,4 +6204,38 @@ details[open] > .rank-branch-tab .rank-branch-tab-caret {
     grid-template-columns: 1fr;
     max-width: 480px;
   }
+}
+
+/* =====================================================
+   Women's Ranks page only (scoped via modifier classes so
+   the shared .rank-flow-shell / .rank-branch-split rules
+   used by the Men's page are unaffected).
+   ===================================================== */
+
+/* Natural branch heights: General Line (6 ranks) and Prophetess
+   Line (5 ranks) are allowed to end at different points rather than
+   being stretched to an artificial equal height. Both still start
+   at the same baseline because both panels open with an identical
+   "Increasing seniority" cue. */
+@media (min-width: 1024px) {
+  .rank-branch-split.rank-branch-split--natural {
+    align-items: start;
+  }
+
+  .rank-branch-split--natural .rank-branch-panel {
+    height: auto;
+  }
+}
+
+/* Rank Detail moves below the two branches instead of sitting
+   beside them as a sticky third column, so the hierarchy itself
+   stays the primary composition. */
+.rank-flow-shell.rank-flow-shell--stacked {
+  display: block;
+}
+
+.rank-flow-shell--stacked .rank-detail-panel {
+  position: static;
+  max-width: 640px;
+  margin: 40px auto 0;
 }
