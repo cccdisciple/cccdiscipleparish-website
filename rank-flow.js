@@ -88,9 +88,60 @@ document.addEventListener("DOMContentLoaded", function () {
     resetPanel();
   }
 
+  /* ---------------------------------------------------------------
+     Branch split (General vs. Prophetic/Prophetess line).
+
+     No JS: each pair of .rank-branch-panel elements shares a native
+     `name` attribute, so browsers already give a free exclusive
+     accordion (opening one closes the other) at any screen width.
+
+     With JS, at desktop widths both branches should be visible at
+     once, side-by-side. Native <details> enforces same-name
+     exclusivity even for scripted `.open` changes, so the `name`
+     attribute is temporarily removed while in desktop mode (lifting
+     the constraint so both can be open simultaneously) and restored
+     when returning to mobile widths (so the free exclusive-accordion
+     behavior comes back).
+     --------------------------------------------------------------- */
+  var branchGroups = {};
+  Array.prototype.slice.call(document.querySelectorAll(".rank-branch-panel")).forEach(function (panel) {
+    var group = panel.getAttribute("data-branch-group");
+    if (!group) return;
+    if (!branchGroups[group]) branchGroups[group] = [];
+    branchGroups[group].push({
+      el: panel,
+      name: panel.getAttribute("name"),
+      defaultOpen: panel.hasAttribute("open")
+    });
+  });
+
+  function applyBranchLayout() {
+    var desktop = isDesktop();
+    Object.keys(branchGroups).forEach(function (group) {
+      branchGroups[group].forEach(function (entry) {
+        if (desktop) {
+          entry.el.removeAttribute("name");
+          entry.el.open = true;
+        } else {
+          if (entry.name) entry.el.setAttribute("name", entry.name);
+          entry.el.open = entry.defaultOpen;
+        }
+      });
+    });
+  }
+
+  if (Object.keys(branchGroups).length) {
+    applyBranchLayout();
+  }
+
+  function applyResponsiveModes() {
+    applyModeReset();
+    applyBranchLayout();
+  }
+
   if (typeof desktopQuery.addEventListener === "function") {
-    desktopQuery.addEventListener("change", applyModeReset);
+    desktopQuery.addEventListener("change", applyResponsiveModes);
   } else if (typeof desktopQuery.addListener === "function") {
-    desktopQuery.addListener(applyModeReset);
+    desktopQuery.addListener(applyResponsiveModes);
   }
 });

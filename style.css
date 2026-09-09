@@ -5660,3 +5660,536 @@ a.hub-row:focus-visible .hub-row-action svg {
     font-size: 0.74rem;
   }
 }
+
+/* =====================================================
+   Leadership & Ranks — reference upgrade
+   (About This Reference, quick-answer rank lines,
+   Sources & Methodology, editorial review line)
+   ===================================================== */
+
+.page-editorial-note {
+  max-width: 780px;
+  margin: 18px auto 0;
+  text-align: center;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* ---- Quick-answer rank lines (parent hub) ---- */
+.rank-quick-lines {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 40px;
+  max-width: 940px;
+  margin: 40px auto 0;
+  text-align: left;
+}
+
+.rank-quick-line {
+  background: var(--gray-bg);
+  border-radius: var(--radius);
+  padding: 26px 28px;
+}
+
+.rank-quick-line-heading {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  margin: 0 0 14px;
+  text-align: center;
+}
+
+.rank-quick-list {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.rank-quick-list li {
+  padding: 4px 0;
+  color: var(--text-dark);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.rank-quick-list li:not(:last-child)::after {
+  content: "\2193";
+  display: block;
+  color: var(--gold-deep);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+.rank-quick-list-note {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-style: italic;
+}
+
+.rank-quick-line-note {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  text-align: center;
+  margin: 0;
+}
+
+.rank-quick-line-link {
+  text-align: center;
+  margin: 0;
+}
+
+.rank-quick-line-link a {
+  color: #3a5f80;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .rank-quick-lines {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+}
+
+/* ---- Sources & Methodology ---- */
+.sources-tiers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  max-width: 860px;
+  margin: 36px auto 0;
+  padding-top: 30px;
+  border-top: 1px solid #e6e2d8;
+}
+
+.sources-tier {
+  padding: 0 30px;
+  border-left: 1px solid #e6e2d8;
+}
+
+.sources-tier:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.sources-tier:last-child {
+  padding-right: 0;
+}
+
+.sources-tier-heading {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+  margin: 0 0 12px;
+}
+
+.sources-tier-list {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+.sources-note {
+  max-width: 780px;
+  margin: 26px auto 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.75;
+  text-align: center;
+}
+
+.sources-note a,
+.rank-detail-note a,
+.rank-exceptional-card a,
+.rank-flow-caption a {
+  color: #3a5f80;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.page-source-list {
+  max-width: 640px;
+  margin: 26px auto 0;
+  padding: 18px 22px;
+  background: var(--gray-bg);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.page-source-list h3 {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 0.9rem;
+  margin: 0 0 10px;
+}
+
+.page-source-list ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.page-source-list a {
+  color: #3a5f80;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .sources-tiers {
+    grid-template-columns: 1fr;
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .sources-tier {
+    padding: 0 0 24px;
+    margin-bottom: 24px;
+    border-left: none;
+    border-bottom: 1px solid #e6e2d8;
+  }
+
+  .sources-tier:first-child {
+    padding-left: 0;
+  }
+
+  .sources-tier:last-child {
+    padding-right: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+/* =====================================================
+   Leadership & Ranks — branching hierarchy UI
+   (shared starting rank, General/Prophetic(-ess) branch
+   split, Higher Evangelist Orders, female convergence)
+
+   Breakpoint matches the existing rank-flow.js desktop
+   query (min-width: 1024px) so the branch layout and the
+   sticky detail panel switch to "desktop mode" together.
+   ===================================================== */
+
+.rank-flow-connector {
+  text-align: center;
+  color: var(--gold-deep);
+  font-size: 1.1rem;
+  line-height: 1;
+  margin: 18px 0;
+}
+
+/* Shared starting rank (Brother / Sister) reuses the single-tier
+   card look via a one-item .rank-ladder, styled with an eyebrow. */
+.rank-start-eyebrow {
+  text-align: center;
+  font-family: var(--font-heading);
+  color: var(--gold-deep);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.rank-ladder--single {
+  padding-left: 0;
+  max-width: 360px;
+}
+
+.rank-ladder--single::before {
+  display: none;
+}
+
+.rank-ladder--single .rank-tier::before {
+  display: none;
+}
+
+/* Branch split: General vs. Prophetic/Prophetess, native
+   details/summary exclusive accordion (shared name attr) on
+   mobile; forced side-by-side on desktop regardless of the
+   underlying open state. */
+.rank-branch-split {
+  display: block;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.rank-branch-panel {
+  border: 1px solid #e6e2d8;
+  border-radius: var(--radius);
+  background: var(--gray-bg);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.rank-branch-panel:last-child {
+  margin-bottom: 0;
+}
+
+.rank-branch-panel--prophetic {
+  border-color: rgba(58, 95, 128, 0.3);
+  background: rgba(58, 95, 128, 0.05);
+}
+
+.rank-branch-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 22px;
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.rank-branch-tab::-webkit-details-marker {
+  display: none;
+}
+
+.rank-branch-panel--prophetic .rank-branch-tab {
+  color: #3a5f80;
+}
+
+.rank-branch-tab:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: -2px;
+}
+
+.rank-branch-tab-caret {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--transition);
+  opacity: 0.6;
+}
+
+details[open] > .rank-branch-tab .rank-branch-tab-caret {
+  transform: rotate(-135deg);
+}
+
+.rank-branch-panel-body {
+  padding: 6px 18px 24px;
+}
+
+@media (min-width: 1024px) {
+  .rank-branch-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .rank-branch-panel {
+    margin-bottom: 0;
+  }
+
+  /* Both branches stay visible side-by-side on desktop no matter
+     which one carries the native [open] state. */
+  .rank-branch-panel > .rank-branch-panel-body {
+    display: block !important;
+  }
+
+  .rank-branch-tab {
+    cursor: default;
+  }
+
+  .rank-branch-tab-caret {
+    display: none;
+  }
+}
+
+/* Callout distinguishing General/Prophetic(-ess) progression from clergy status */
+.rank-transition-callout {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Higher Evangelist Orders section label (reuses content-note's
+   heading color scheme but stays navy, not the blue used for the
+   related-path branch cards, since it is not a "related" aside) */
+.rank-section-heading {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  text-align: center;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 8px;
+}
+
+/* Female convergence card (Mother Celestial), reached from both
+   branches. Reuses .rank-tier--peak's navy/gold treatment via a
+   one-item .rank-ladder. */
+.rank-convergence-note {
+  max-width: 560px;
+  margin: 14px auto 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .rank-branch-tab {
+    padding: 14px 18px;
+    font-size: 0.94rem;
+  }
+}
+
+/* =====================================================
+   Parent-page architecture diagram (teaches the branching
+   structure without duplicating the full rank hierarchy)
+   ===================================================== */
+.rank-arch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  max-width: 880px;
+  margin: 40px auto 0;
+  text-align: left;
+}
+
+.rank-arch-card {
+  background: var(--gray-bg);
+  border: 1px solid #e6e2d8;
+  border-radius: var(--radius);
+  padding: 28px 26px;
+}
+
+.rank-arch-heading {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  text-align: center;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 18px;
+}
+
+.rank-arch-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.rank-arch-node {
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--white);
+  border: 1px solid rgba(200, 162, 74, 0.4);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.rank-arch-node-sub {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-top: 3px;
+}
+
+.rank-arch-node--start {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--gold-light);
+}
+
+.rank-arch-node--start .rank-arch-node-sub {
+  color: var(--gold-light);
+  opacity: 0.85;
+}
+
+.rank-arch-node--peak {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--gold-light);
+}
+
+.rank-arch-branch-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.rank-arch-branch-row .rank-arch-node {
+  flex: 1 1 auto;
+}
+
+.rank-arch-node--prophetic {
+  border-color: rgba(58, 95, 128, 0.4);
+  background: rgba(58, 95, 128, 0.06);
+  color: #3a5f80;
+}
+
+.rank-arch-pair-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rank-arch-pair-sep {
+  color: var(--gold-deep);
+  font-size: 1rem;
+  flex: 0 0 auto;
+}
+
+.rank-arch-node--nonclergy,
+.rank-arch-node--clergy {
+  flex: 1 1 auto;
+}
+
+.rank-arch-connector {
+  color: var(--gold-deep);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.rank-arch-callout {
+  text-align: left;
+  margin-top: 18px;
+}
+
+.rank-arch-link {
+  text-align: center;
+  margin: 18px 0 0;
+}
+
+.rank-arch-link a {
+  color: #3a5f80;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .rank-arch-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+}
