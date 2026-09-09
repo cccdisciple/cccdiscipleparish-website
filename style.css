@@ -6114,6 +6114,7 @@ details[open] > .rank-branch-tab .rank-branch-tab-caret {
   display: flex;
   flex-direction: column;
   height: 100%;
+  max-height: inherit;
   overflow-y: auto;
   transition: opacity 140ms ease;
 }
