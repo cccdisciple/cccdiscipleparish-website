@@ -2350,16 +2350,6 @@ body.page-home .site-header {
 }
 
 /* ---- Rank ladder: the primary continuous flow ---- */
-.ladder-direction {
-  text-align: center;
-  font-family: var(--font-heading);
-  color: var(--gold-deep);
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin: 0 0 22px;
-}
-
 .rank-ladder {
   position: relative;
   max-width: 640px;
@@ -2483,18 +2473,33 @@ details[open] > .rank-node-summary .rank-node-caret {
   border-radius: 10px;
 }
 
+/* Counterpart ladder (Higher Evangelist Orders): each pair reads as
+   a two-row "rung" — Non-Clergy above, Clergy below, consistently in
+   that order — rather than a boxed two-column card. Full row width
+   lets long titles breathe onto two or three lines instead of
+   wrapping tightly inside a half-width column. */
 .rank-tier-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: #e6e2d8;
-  border: 1px solid #e6e2d8;
-  border-radius: 10px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .rank-tier-pair > .rank-node-details {
-  background: var(--gray-bg);
+  background: none;
+}
+
+.rank-tier-pair-link {
+  text-align: center;
+  color: var(--gold-deep);
+  font-size: 0.8rem;
+  line-height: 1;
+  opacity: 0.6;
+  margin: 0;
+  padding: 2px 0;
+}
+
+.rank-tier-pair.is-active-pair .rank-tier-pair-link {
+  opacity: 1;
+  font-weight: 700;
 }
 
 .rank-tier-col-label {
@@ -2517,10 +2522,6 @@ details[open] > .rank-node-summary .rank-node-caret {
 .rank-detail-body {
   padding: 4px 18px 18px;
   text-align: left;
-}
-
-.rank-tier-pair .rank-detail-body {
-  padding: 0 14px 16px;
 }
 
 .rank-detail-nav {
@@ -2677,11 +2678,15 @@ details[open] > .rank-node-summary .rank-node-caret {
 }
 
 .rank-branch-intro {
-  color: var(--text-dark);
-  font-size: 0.92rem;
-  line-height: 1.7;
-  text-align: center;
-  margin: 0 0 26px;
+  max-width: 520px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.65;
+  text-align: left;
+  border-left: 2px solid rgba(200, 162, 74, 0.35);
+  padding-left: 14px;
+  margin: 0 0 24px;
 }
 
 .rank-branch .flow-steps {
@@ -2846,16 +2851,6 @@ details[open] > .rank-node-summary .rank-node-caret {
   .hub-cta-grid {
     grid-template-columns: 1fr;
     max-width: 420px;
-  }
-}
-
-@media (max-width: 560px) {
-  .rank-tier-pair {
-    grid-template-columns: 1fr;
-  }
-
-  .rank-tier-pair > .rank-node-details:first-child {
-    border-bottom: 1px solid #e6e2d8;
   }
 }
 
@@ -5989,10 +5984,20 @@ details[open] > .rank-branch-tab .rank-branch-tab-caret {
   }
 }
 
-/* Callout distinguishing General/Prophetic(-ess) progression from clergy status */
+/* Callout distinguishing General/Prophetic(-ess) progression from clergy
+   status — a quiet editorial annotation, not another card competing
+   with the selectable hierarchy above and below it. */
 .rank-transition-callout {
-  max-width: 640px;
+  max-width: 480px;
   margin: 0 auto;
+  padding: 0 0 0 14px;
+  background: none;
+  border: none;
+  border-left: 2px solid rgba(200, 162, 74, 0.35);
+  border-radius: 0;
+  text-align: left;
+  font-style: italic;
+  font-size: 0.85rem;
 }
 
 /* Higher Evangelist Orders section label (reuses content-note's
@@ -6023,6 +6028,50 @@ details[open] > .rank-branch-tab .rank-branch-tab-caret {
   .rank-branch-tab {
     padding: 14px 18px;
     font-size: 0.94rem;
+  }
+}
+
+/* Ordinary ranks read as a quiet editorial index at desktop — no
+   button chrome. Typography, the timeline marker, and a restrained
+   selected-state carry the hierarchy instead of a caret and a boxed
+   row. Scoped to :not(.rank-ladder--single) so the shared-start rank
+   and the Mother Celestial/convergence bookend keep their existing,
+   more ceremonial card treatment untouched. */
+@media (min-width: 1024px) {
+  .rank-ladder:not(.rank-ladder--single) .rank-tier-single:not(.rank-tier--peak) > .rank-node-details {
+    background: none;
+    border: none;
+    border-radius: 0;
+  }
+
+  .rank-ladder:not(.rank-ladder--single) .rank-tier:not(.rank-tier--peak) .rank-node-summary {
+    justify-content: flex-start;
+    text-align: left;
+    padding: 6px 0;
+  }
+
+  .rank-ladder:not(.rank-ladder--single) .rank-tier:not(.rank-tier--peak) .rank-node-caret {
+    display: none;
+  }
+
+  .rank-ladder:not(.rank-ladder--single) .rank-tier:not(.rank-tier--peak) .rank-node-summary:hover {
+    background: none;
+    color: var(--gold-deep);
+  }
+
+  .rank-ladder:not(.rank-ladder--single) .rank-tier:not(.rank-tier--peak) .rank-node-summary.is-selected {
+    background: none;
+    box-shadow: none;
+  }
+
+  .rank-ladder:not(.rank-ladder--single) .rank-tier:not(.rank-tier--peak) .rank-node-summary.is-selected .rank-node-name {
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 2px;
+  }
+
+  .rank-ladder:not(.rank-ladder--single) .rank-tier.is-selected:not(.rank-tier--peak)::before {
+    background: var(--gold);
+    border-color: var(--gold);
   }
 }
 

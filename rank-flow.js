@@ -179,9 +179,17 @@ document.addEventListener("DOMContentLoaded", function () {
     if (selectedSummary) {
       selectedSummary.classList.remove("is-selected");
       selectedSummary.setAttribute("aria-expanded", "false");
+      var prevTier = selectedSummary.closest(".rank-tier");
+      if (prevTier) prevTier.classList.remove("is-selected");
+      var prevPair = selectedSummary.closest(".rank-tier-pair");
+      if (prevPair) prevPair.classList.remove("is-active-pair");
     }
     summary.classList.add("is-selected");
     summary.setAttribute("aria-expanded", "true");
+    var tier = summary.closest(".rank-tier");
+    if (tier) tier.classList.add("is-selected");
+    var pair = summary.closest(".rank-tier-pair");
+    if (pair) pair.classList.add("is-active-pair");
     selectedSummary = summary;
     selectedDetails = details;
 
