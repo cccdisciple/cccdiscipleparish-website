@@ -5992,17 +5992,24 @@ details[open] > .rank-branch-tab .rank-branch-tab-caret {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
-    align-items: start;
+    align-items: stretch;
   }
 
+  /* Equal-height cards regardless of how many ranks are in each
+     branch, so the two columns present a clean, level pair rather
+     than mismatched bottoms. */
   .rank-branch-panel {
     margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   /* Both branches stay visible side-by-side on desktop no matter
      which one carries the native [open] state. */
   .rank-branch-panel > .rank-branch-panel-body {
     display: block !important;
+    flex: 1 1 auto;
   }
 
   .rank-branch-tab {
