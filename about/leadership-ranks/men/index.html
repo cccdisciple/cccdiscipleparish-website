@@ -180,12 +180,12 @@
   <!-- ===================== RANK FLOW ===================== -->
   <section class="content-section content-section--alt" id="rank-flow">
     <div class="container">
-      <div class="rank-flow-shell">
-        <div class="rank-flow-track-col">
+      <div class="rank-editorial">
+        <div class="rank-editorial-hierarchy">
 
           <!-- ===================== SHARED STARTING RANK ===================== -->
           <p class="rank-start-eyebrow">Common Starting Rank</p>
-          <ol class="rank-ladder rank-ladder--single" aria-label="Shared starting rank">
+          <ol class="rank-ladder rank-ladder--single" aria-label="Shared starting rank" data-branch-label="Common Starting Rank">
             <li class="rank-tier rank-tier-single">
               <details class="rank-node-details" name="men-rank-detail">
                 <summary class="rank-node-summary">
@@ -870,13 +870,36 @@
 
         </div>
 
-        <!-- ===================== DESKTOP DETAIL PANEL ===================== -->
-        <aside class="rank-detail-panel" id="rankDetailPanel" aria-live="polite">
-          <p class="rank-detail-panel-eyebrow">Rank Detail</p>
-          <h2 class="rank-detail-panel-title"></h2>
-          <p class="rank-detail-panel-placeholder">Select a rank to see its position in the progression.</p>
-          <div class="rank-detail-panel-body" hidden></div>
-        </aside>
+        <!-- ===================== RANK DETAIL PLATE ===================== -->
+        <dialog class="rank-plate" id="rankPlate" aria-live="polite" aria-labelledby="rankPlateName">
+          <div class="rank-plate-inner">
+            <button type="button" class="rank-plate-close" aria-label="Close rank detail">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            <figure class="rank-plate-figure">
+              <div class="rank-plate-image" aria-hidden="true"></div>
+            </figure>
+
+            <div class="rank-plate-content">
+              <p class="rank-plate-eyebrow"></p>
+              <h2 class="rank-plate-name" id="rankPlateName"></h2>
+              <div class="rank-plate-body"></div>
+
+              <div class="rank-plate-counterpart" hidden>
+                <p class="rank-plate-counterpart-label">Counterpart</p>
+                <button type="button" class="rank-plate-counterpart-btn"></button>
+              </div>
+            </div>
+
+            <p class="rank-plate-empty">Select a rank to see its detail here.</p>
+
+            <nav class="rank-plate-nav" aria-label="Adjacent ranks in this line">
+              <button type="button" class="rank-plate-prev" disabled>&larr; Previous</button>
+              <button type="button" class="rank-plate-next" disabled>Next &rarr;</button>
+            </nav>
+          </div>
+        </dialog>
       </div>
 
       <div class="page-source-list">
