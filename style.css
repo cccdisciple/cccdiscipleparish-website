@@ -977,26 +977,13 @@ body.page-home .site-header {
   line-height: 1.6;
 }
 
-/* ---------- Upcoming Events placeholder ---------- */
-.events-panel {
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-  background: var(--gray-bg);
-  border: 1px dashed rgba(16, 33, 63, 0.28);
-  border-radius: var(--radius);
-  padding: 56px 34px;
+/* ---------- Upcoming Events: event card + embedded calendar spacing ---------- */
+.community-card--event {
+  margin-bottom: 48px;
 }
 
-.events-panel p {
-  color: var(--text-muted);
-  line-height: 1.8;
-  margin: 0 0 8px;
-}
-
-.events-panel .events-note {
-  font-size: 0.82rem;
-  opacity: 0.75;
+.embed-frame--calendar {
+  margin-bottom: 8px;
 }
 
 /* ---------- Watch Live section ---------- */
